@@ -8,14 +8,8 @@
         </ul>
     </section>
 </template>
-<script lang="ts">
-export default {
-    data() {
-        return {
-            purple: '#6E3FF3',
-            red: '#DF1C41',
-            pink: '#E255F2'
-        }
-    }
-}
+<script setup lang="ts">
+const purple = '#6E3FF3';
+const red = '#DF1C41';
+const pink = '#E255F2';
 </script>

@@ -3,7 +3,7 @@
         <li class="item">
             <div class="contents">
                 <div class="icon">
-                    <SvgIcon :name="icon"  height="20" width="20"/>
+                    <SvgIcon :name="icon || ''"  height="20" width="20"/>
                 </div>
                 <span class="title">
                     {{ title }}
@@ -16,10 +16,14 @@
     </NuxtLink>
 </template>
 
-<script lang="ts">
-export default {
-    props: ['title', 'icon', 'to', 'height', 'width'],
-}
+<script setup lang="ts">
+import { defineProps } from 'vue'
+
+const props = defineProps({
+    title: String,
+    icon: String,
+    to: String,
+})
 </script>
 
 <style lang="scss" scoped>

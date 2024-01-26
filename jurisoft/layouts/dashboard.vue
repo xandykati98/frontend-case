@@ -10,17 +10,6 @@
     </div>
 </template>
 
-
-<script>
-import Sidebar from '@/components/Sidebar/Sidebar.vue';
-
-export default {
-    components: {
-        Sidebar
-    }
-}
-</script>
-
 <style lang="scss">
     $sidebar-width: 272px;
     .sidebar-container {

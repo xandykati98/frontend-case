@@ -7,11 +7,18 @@
         </ul>
     </section>
 </template>
-<script>
-import { onMounted } from 'vue'
-const activeLink = ref(0)
-const links = ref([])
-const navLinks = ref([
+
+<script setup lang="ts">
+import { ref, onMounted, computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+type NavLink = {
+    title: string,
+    icon: string,
+    to: string,
+}
+
+const navLinks = ref<NavLink[]>([
     {
         title: 'Dashboard',
         icon: 'dashboard',
@@ -53,56 +60,42 @@ const navLinks = ref([
         to: '/documentos',
     },
 ])
-const setActiveLink = (index) => {
-    console.log(index)
+const activeLink = ref(0)
+const links = ref<NavLink[]>([])
+
+const setActiveLink = (index: number) => {
     activeLink.value = index
 }
-const registerLink = (link) => {
+
+const registerLink = (link: NavLink) => {
     links.value.push(link)
 }
 
+const trackerTop = computed(() => {
+    return `${(activeLink.value * (36 + 4)) + (activeLink.value * 4) + 8}px`
+})
 
-export default {
-    methods: {
-        setActiveLink,
-        registerLink
-    },
-    computed: {
-        trackerTop: function () {
-            return `${(activeLink.value * (36 + 4)) + (activeLink.value * 4) + 8}px`
-        }
-    },
-    watch:{
-        $route (to, from){
-            // if "to" not in links
-            if (!links.value.find(link => link.to === to.path)) {
-                setActiveLink(-1)
-            }
-        }
-    },
-    setup() {
-        onMounted(() => {
-            // register all links
-            for (const link of navLinks.value) {
-                registerLink(link)
-            }
-            // get path 
-            const path = window.location.pathname
-            // get index of path in links
-            const index = links.value.findIndex(link => link.to === path)
-            // set active link
-            setActiveLink(index)
-        })
-        return {
-            navLinks,
-            activeLink,
-            setActiveLink,
-            registerLink,
-            links
-        }
+const route = useRoute()
+
+watch(() => route.path, (to) => {
+    // if "to" not in links
+    if (!links.value.find(link => link.to === to)) {
+        setActiveLink(-1)
     }
-}
+})
+
+onMounted(() => {
+    // register all links
+    for (const link of navLinks.value) {
+        registerLink(link)
+    }
+    const path = window.location.pathname
+    // find active link
+    const index = links.value.findIndex(link => link.to === path)
+    setActiveLink(index)
+})
 </script>
+
 <style lang="scss" scoped>
     .active-tracker {
         position: absolute;

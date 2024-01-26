@@ -8,14 +8,6 @@
         </section>
     </div>
 </template>
-<script lang="ts">
-export default {
-    data() {
-        return {
-        }
-    }
-}
-</script>
 <style lang="scss" scoped>
     .sidebar-lists {
         gap: 0;

@@ -17,10 +17,10 @@
     </NuxtLink>
 </template>
 
-<script lang="ts">
-export default {
-    props: ['title', 'to', 'color', 'command'],
-}
+<script setup lang="ts">
+import { defineProps } from 'vue';
+
+defineProps(['title', 'to', 'color', 'command']);
 </script>
 
 <style lang="scss" scoped>
