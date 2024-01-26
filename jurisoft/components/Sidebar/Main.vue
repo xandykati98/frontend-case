@@ -2,7 +2,7 @@
     <section>
         <div class="list-title">Main</div>
         <ul class="nav-group">
-            <div class="active-tracker" :style="`top: ${trackerTop}`"></div>
+            <div class="active-tracker" :style="`top: ${trackerTop}; left: ${activeLink === -1 ? -24 : -20}px`"></div>
             <SidebarMainNavLink v-for="(item, index) in navLinks" :key="item.title" :title="item.title" :icon="item.icon" :to="item.to" @click="setActiveLink(index)" />
         </ul>
     </section>
@@ -54,6 +54,7 @@ const navLinks = ref([
     },
 ])
 const setActiveLink = (index) => {
+    console.log(index)
     activeLink.value = index
 }
 const registerLink = (link) => {
@@ -71,6 +72,14 @@ export default {
             return `${(activeLink.value * (36 + 4)) + (activeLink.value * 4) + 8}px`
         }
     },
+    watch:{
+        $route (to, from){
+            // if "to" not in links
+            if (!links.value.find(link => link.to === to.path)) {
+                setActiveLink(-1)
+            }
+        }
+    },
     setup() {
         onMounted(() => {
             // register all links
@@ -79,7 +88,6 @@ export default {
             }
             // get path 
             const path = window.location.pathname
-            console.log(path)
             // get index of path in links
             const index = links.value.findIndex(link => link.to === path)
             // set active link

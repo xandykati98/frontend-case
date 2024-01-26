@@ -1,8 +1,9 @@
 <template>
-    <div class="container-header">
+    <div class="container-profile">
+        <div class="divider"></div>
         <section>
-            <div class="container-logo-intro">
-                <div class="logo">
+            <div class="container-avatar-intro">
+                <div class="avatar">
                     <SvgIcon name="logo" height="40" width="40"/>
                 </div>
                 <div class="intro">
@@ -14,11 +15,10 @@
                 <svg-icon name="caret-down" width="24" height="24"/>
             </div>
         </section>
-        <div class="divider"></div>
     </div>
 </template>
 <style lang="scss" scoped>
-    .container-header {
+    .container-profile {
         width: 100%;
         height: 88px;
         padding: 12px;
@@ -31,11 +31,14 @@
             margin: 12px;
             display: flex;
             justify-content: space-between;
-            & .container-logo-intro {
+            & .container-avatar-intro {
                 display: flex;
                 justify-content: flex-start;
-                & .logo {
+                & .avatar {
                     margin-right: 12px;
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
                 }
             }
             & .intro {
@@ -77,6 +80,5 @@
         height: 0px;
         width: 232px;
         display: flex;
-        
     }
 </style>
