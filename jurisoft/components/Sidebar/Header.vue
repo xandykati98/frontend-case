@@ -3,7 +3,7 @@
         <section>
             <div class="container-logo-intro">
                 <div class="logo" @click="logoClick">
-                    <SvgIcon name="logo" height="40" width="40"/>
+                    <nuxt-icon name="logo" filled/>
                 </div>
                 <div class="intro">
                     <h1>Jurisoft</h1>
@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="caret" @click="layout.minimize">
-                <svg-icon name="caret-down" width="24" height="24"/>
+                <nuxt-icon name="caret-down" filled/>
             </div>
         </section>
         <div class="divider"></div>
@@ -69,6 +69,8 @@ const logoClick = () => {
             justify-content: flex-start;
             & .logo {
                 margin-right: 12px;
+                width: 40px;
+                height: 40px;
                 cursor: pointer;
             }
         }
@@ -109,7 +111,7 @@ const logoClick = () => {
     }
 }
 .divider {
-    border-top: 1px solid #E2E4E9;
+    border-top: 1px solid $border;
     height: 0px;
     width: 232px;
     display: flex;

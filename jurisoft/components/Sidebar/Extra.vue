@@ -9,6 +9,10 @@
     </div>
 </template>
 <style lang="scss" scoped>
+.nav-group {
+    display: grid;
+    gap: 4px;
+}
 .sidebar-lists {
     gap: 0;
     align-self: flex-end;

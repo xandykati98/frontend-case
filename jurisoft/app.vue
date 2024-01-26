@@ -10,8 +10,7 @@ const loading = ref<boolean>(true)
 const userStore = useUserStore();
 userStore
 .loadUser()
-.then((res) => {
-  console.log(res)
+.then(() => {
   loading.value = false
 })
 </script>
@@ -19,5 +18,13 @@ userStore
 * {
     font-family: Inter;
     box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+.nuxt-icon svg {
+  margin-bottom: 0!important;
+  width: 100%!important;
+  height: 100%!important;
 }
 </style>

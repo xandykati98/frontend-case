@@ -2,7 +2,7 @@
     <section>
         <div class="list-title">Main</div>
         <ul class="nav-group">
-            <div class="active-tracker" :style="`top: ${trackerTop}; left: ${activeLink === -1 ? -24 : layout.minimized ? -8 : -20}px`"></div>
+            <div class="active-tracker" :style="`top: ${trackerTop}; left: ${activeLink === -1 ? -24 : layout.isMinimized ? -8 : -20}px`"></div>
             <SidebarMainNavLink v-for="(item, index) in navLinks" :key="item.title" :title="item.title" :icon="item.icon" :to="item.to" @click="setActiveLink(index)" />
         </ul>
     </section>
@@ -77,9 +77,9 @@ const registerLink = (link: NavLink) => {
 
 const trackerTop = computed(() => {
     if (activeLink.value === -1) {
-        return `${(lastActiveLink.value * (36 + 4)) + (lastActiveLink.value * 4) + 8}px`
+        return `${(lastActiveLink.value * (36 + 4)) + 8}px`
     }
-    return `${(activeLink.value * (36 + 4)) + (activeLink.value * 4) + 8}px`
+    return `${(activeLink.value * (36 + 4)) + 8}px`
 })
 
 const route = useRoute()
@@ -115,10 +115,8 @@ onMounted(() => {
     transition: top 0.2s ease-in-out;
 }
 .nav-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
+    display: grid;
+    gap: 4px;
 }
 .minimized {
     & .list-title {

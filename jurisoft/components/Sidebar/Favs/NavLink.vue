@@ -56,7 +56,7 @@ defineProps({
         align-items: center;
         & .contents {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: row;
             align-items: center;
             & .ball {
                 width: 8px;
@@ -72,12 +72,13 @@ defineProps({
                 font-weight: 500;
                 line-height: 20px;
                 letter-spacing: -0.084px;
+                padding-right: 10px;
             }
         }
         & .command {
             padding: 0px 6px;
             border-radius: 4px;
-            border: 1px solid #E2E4E9;
+            border: 1px solid $border;
             display: flex;
             align-items: center;
             color: $text-light;
@@ -87,6 +88,8 @@ defineProps({
             line-height: 20px;
             letter-spacing: -0.084px;
             height: 20px;
+            width: 38px;
+            white-space: nowrap;
         }
     }
     &:hover {

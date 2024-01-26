@@ -1,10 +1,8 @@
 <template>
     <div>
-        <div class="sidebar-container" :style="`width: ${layout.minimized ? '80': '272'}px`">
-            <Sidebar />
-        </div>
-        <div :class="`main ${layout.minimized ? 'minimized' : ''}`">
-            header
+        <Sidebar />
+        <div :class="`main ${layout.isMinimized ? 'minimized' : ''}`">
+            <Header />
             <slot/>
         </div>
     </div>
@@ -17,16 +15,6 @@ const layout = useLayoutStore();
 </script>
 
 <style lang="scss">
-    $sidebar-width: 272px;
-    $mini-sidebar-width: 80px;
-    .sidebar-container {
-        width: $sidebar-width;
-        height: 100vh;
-        background-color: #FFFFFF;
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
     .main {
         margin-left: $sidebar-width;
         width: calc(100% - #{$sidebar-width});

@@ -17,6 +17,9 @@ dependencies:
   node-sass:
     specifier: ^9.0.0
     version: 9.0.0
+  nuxt-icons:
+    specifier: ^3.2.1
+    version: 3.2.1
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(vue@3.4.15)
@@ -4756,6 +4759,15 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
+
+  /nuxt-icons@3.2.1:
+    resolution: {integrity: sha512-trvAFq9oWYwWEQ0qZDHVxvLK+TwOdFnoXYOXQvN1CRUlp1DBJdxC8vXO3mED2Kb+Suag+bpWLC6eXGrRwhfffQ==}
+    dependencies:
+      '@nuxt/kit': 3.9.3
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: false
 
   /nuxt@3.9.3(sass@1.70.0)(vite@5.0.12):
     resolution: {integrity: sha512-IzBJAJImqCGfspVZzvznrALnFIJ5rPe+VJvY8OiccwRzWT8sEygVRjh3Mc64yWV6P59rz497wp9RBBBhuV2MVA==}

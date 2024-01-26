@@ -14,15 +14,16 @@ const red = '#DF1C41';
 const pink = '#E255F2';
 </script>
 <style lang="scss" scoped>
+.nav-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .minimized {
     & .list-title {
         text-align: center;
-    }
-    & .nav-group {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
     }
 }
 </style>

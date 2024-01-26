@@ -1,21 +1,22 @@
 <template>
     <div class="container-profile" @click="store.loadUser">
         <div class="divider"></div>
-        <NuxtLink to="#">
+        <NuxtLink to="user" active-class="active">
             <section>
                 <div class="container-avatar-intro">
                     <div class="avatar">
                         <NuxtImg :src="store.user?.avatar" alt="avatar"/>
+                        <nuxt-icon class="verified-2" v-if="layout.isMinimized" filled name="verified2"/>
                     </div>
                     <div class="intro">
                         <h1>
-                            {{ store.user?.name }} <svg-icon name="verified" width="20" height="20"/>
+                            {{ store.user?.name }} <nuxt-icon class="verified" filled name="verified"/>
                         </h1>
                         <h3>{{ store.user?.email }}</h3>
                     </div>
                 </div>
                 <div class="caret">
-                    <svg-icon name="caret-right" width="20" height="20"/>
+                    <nuxt-icon name="caret-right" filled/>
                 </div>
             </section>
         </NuxtLink>
@@ -24,6 +25,8 @@
 
 <script setup lang="ts">
 import { useUserStore } from '../../stores/user'
+import { useLayoutStore } from '../../stores/layout';
+const layout = useLayoutStore();
 const store = useUserStore()
 </script>
 
@@ -43,6 +46,15 @@ const store = useUserStore()
                 & .container-avatar-intro {
                     & .avatar {
                         margin-right: 0px;
+                        position: relative;
+                        & .verified-2 {
+                            width: 28px;
+                            height: 28px;
+                            filter: drop-shadow(0px 2px 4px rgba(27, 28, 29, 0.04));
+                            position: absolute;
+                            top: 0px;
+                            left: calc(100% - 12px - 5px);
+                        }
                     }
                 }
                 & .intro {
@@ -67,6 +79,20 @@ const store = useUserStore()
     transition: $sidebar-transition;
     & a {
         text-decoration: none;
+        &.active {
+            & section {
+                & .container-avatar-intro {
+                    & .avatar {
+                        background-color: $bg;
+                        & img {
+                            box-shadow: 0 0 0 2px white, 0 0 0 4px $primary;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+        
+        }
     }
     & section {
         width: 100%;
@@ -106,6 +132,11 @@ const store = useUserStore()
             letter-spacing: -0.084px;
             display: flex;
             align-items: center;
+
+            & .verified {
+                width: 20px;
+                height: 20px;
+            }
         }
         & .intro h3 {
             color: $text-default;
@@ -128,7 +159,7 @@ const store = useUserStore()
     }
 }
 .divider {
-    border-top: 1px solid #E2E4E9;
+    border-top: 1px solid $border;
     height: 0px;
     width: 232px;
     display: flex;

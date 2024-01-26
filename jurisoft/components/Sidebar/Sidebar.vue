@@ -1,16 +1,18 @@
 <template>
-    <div :class="`container-sidebar ${layout.isMinimized ? 'minimized' : ''}`">
-		<div class="top">
-			<SidebarHeader/>
-			<section class="sidebar-lists">
-				<SidebarMain/>
-				<SidebarFavs/>
-			</section>
-		</div>
-		<div class="bottom">
-			<SidebarExtra/>
-			<SidebarProfile/>
-		</div>
+    <div :class="`sidebar ${layout.isMinimized ? 'minimized' : ''}`">
+        <div class="container-sidebar">
+            <div class="top">
+                <SidebarHeader/>
+                <section class="sidebar-lists">
+                    <SidebarMain/>
+                    <SidebarFavs/>
+                </section>
+            </div>
+            <div class="bottom">
+                <SidebarExtra/>
+                <SidebarProfile/>
+            </div>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
@@ -19,7 +21,18 @@ import { useLayoutStore } from '../../stores/layout'
 const layout = useLayoutStore();
 </script>
 <style lang="scss">
+.sidebar {
+    width: $sidebar-width;
+    height: 100vh;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 .minimized {
+    &.sidebar {
+        width: $mini-sidebar-width;
+    }
 	& .sidebar-lists {
 		padding: 20px 8px 16px 8px;
 	}
@@ -67,22 +80,54 @@ const layout = useLayoutStore();
 }
 </style>
 <style lang="scss" scoped>
+.minimized {
+    .container-sidebar {
+		width: $mini-sidebar-width;
+		transition: $sidebar-width-transition;
+	}
+}
 .container-sidebar {
-    box-shadow: 1px 0px 0px 0px #E2E4E9;
+    box-shadow: 1px 0px 0px 0px $border;
+    background: $bg;
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
 	transition: 0s;
 	width: 100%;
-	&.minimized {
-		width: 80px;
-		transition: $sidebar-width-transition;
-	}
+    justify-content: flex-start;
+}
+.top {
+    height: calc(100% - 200px);
+    overflow: auto;
+    
+    /* custom scrollbar */
+    &::-webkit-scrollbar {
+        width: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #d6dee1;
+        border-radius: 20px;
+        border: 6px solid transparent;
+        background-clip: content-box;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #a8bbbf;
+    }
 }
 .bottom {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
     align-content: flex-end;
+    
+    position: absolute;
+    bottom: 0;
+    background: $bg;
 }
 </style>

@@ -3,14 +3,14 @@
         <li class="item">
             <div class="contents">
                 <div class="icon">
-                    <SvgIcon :name="icon || ''"  height="20" width="20"/>
+                    <nuxt-icon :name="icon || ''" />
                 </div>
                 <span class="title">
                     {{ title }}
                 </span>
             </div>
             <div class="caret">
-                <SvgIcon name="caret-right" height="20" width="20"/>
+                <nuxt-icon name="caret-right" filled/>
             </div>
         </li>
     </NuxtLink>
@@ -29,7 +29,6 @@ defineProps({
     & .link {
         width: fit-content;
         align-self: center;
-        height: 40px;
         & .item {
             & .contents {
                 & .title {
@@ -49,7 +48,7 @@ defineProps({
     flex-wrap: wrap;
     border-radius: 8px;
     position: relative;
-    margin-bottom: 4px;
+    height: 36px;
     & .item {
         display: flex;
         width: 100%;
@@ -79,6 +78,8 @@ defineProps({
             }
         }
         & .caret {
+            width: 20px;
+            height: 20px;
             justify-self: end;
             transform: translateX(-10px);
             opacity: 0;
