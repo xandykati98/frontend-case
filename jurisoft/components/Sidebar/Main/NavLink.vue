@@ -38,6 +38,7 @@ $highligh-bg: #F6F8FA;
         justify-content: space-between;
         & .contents {
             display: flex;
+            align-items: center;
             & .icon {
                 display: flex;
                 justify-content: center;
@@ -56,6 +57,7 @@ $highligh-bg: #F6F8FA;
                 font-weight: 500;
                 line-height: 20px;
                 font-size: 14px;
+                letter-spacing: -0.084px;
             }
         }
         & .caret {

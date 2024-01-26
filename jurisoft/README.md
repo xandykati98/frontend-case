@@ -1,10 +1,9 @@
-# Nuxt 3 Minimal Starter
+# Jurisoft - Desafio de Desenvolvimento Front-end
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
+### Candidato: Alexandre dos Santos Pereira <br> Email: xandykati98@gmail.com
 ## Setup
 
-Make sure to install the dependencies:
+Instale as dependências:
 
 ```bash
 # npm
@@ -20,9 +19,9 @@ yarn install
 bun install
 ```
 
-## Development Server
+## Servidor de desenvolvimento
 
-Start the development server on `http://localhost:3000`:
+Inicie o servidor de desenvolvimento no port 3000: `http://localhost:3000`:
 
 ```bash
 # npm
@@ -38,9 +37,9 @@ yarn dev
 bun run dev
 ```
 
-## Production
+## Produção
 
-Build the application for production:
+Criação de build para produção:
 
 ```bash
 # npm
@@ -56,7 +55,7 @@ yarn build
 bun run build
 ```
 
-Locally preview production build:
+Visualizar build localmente:
 
 ```bash
 # npm
@@ -72,4 +71,3 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

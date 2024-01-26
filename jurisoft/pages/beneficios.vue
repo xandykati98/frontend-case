@@ -1,5 +1,5 @@
 <template>
-    <div>Dashboard</div>
+    <div>Benefícios</div>
 </template>
 <script setup>
     definePageMeta({
