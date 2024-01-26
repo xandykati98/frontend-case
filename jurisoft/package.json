@@ -18,9 +18,11 @@
   },
   "dependencies": {
     "@nuxt/image": "^1.3.0",
+    "@nuxt/kit": "^3.9.3",
     "@pinia/nuxt": "^0.5.1",
     "node-sass": "^9.0.0",
     "nuxt-icons": "^3.2.1",
+    "nuxt-viewport": "^2.1.4",
     "pinia": "^2.1.7"
   }
 }

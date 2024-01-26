@@ -4,7 +4,8 @@ export default defineNuxtConfig({
 	modules: [
 		'@nuxt/image',
 		'@pinia/nuxt',
-		'nuxt-icons'
+		'nuxt-icons',
+		'nuxt-viewport'
 	],
 	vite: {
 		css: {
@@ -17,5 +18,12 @@ export default defineNuxtConfig({
 	},
 	image: {
 		dir: 'assets/images'
+	},
+	app: {
+		head: {
+			charset: 'utf-8',
+			viewport: 'width=device-width, initial-scale=1',
+
+		}
 	}
 })

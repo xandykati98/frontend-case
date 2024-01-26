@@ -1,11 +1,11 @@
 <template>
     <div class="container-profile" @click="store.loadUser">
         <div class="divider"></div>
-        <NuxtLink to="user" active-class="active">
+        <nuxt-link to="user" active-class="active">
             <section>
                 <div class="container-avatar-intro">
                     <div class="avatar">
-                        <NuxtImg :src="store.user?.avatar" alt="avatar"/>
+                        <nuxt-img :src="store.user?.avatar" alt="avatar"/>
                         <nuxt-icon class="verified-2" v-if="layout.isMinimized" filled name="verified2"/>
                     </div>
                     <div class="intro">
@@ -19,7 +19,7 @@
                     <nuxt-icon name="caret-right" filled/>
                 </div>
             </section>
-        </NuxtLink>
+        </nuxt-link>
     </div>
 </template>
 

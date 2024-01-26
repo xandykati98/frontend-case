@@ -25,5 +25,8 @@ const layout = useLayoutStore();
             margin-left: $mini-sidebar-width;
             transition: 0;
         }
+        @media screen and (max-width: 1024px) {
+            transition: 0s;
+        }
     }
 </style>

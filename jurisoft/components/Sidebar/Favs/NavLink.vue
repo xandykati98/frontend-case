@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to="to" class="link" active-class="active">
+    <nuxt-link :to="to" class="link" active-class="active">
         <li class="item">
             <div class="contents">
                 <div class="ball" :style="`background-color: ${color}`">
@@ -13,7 +13,7 @@
                 {{ command }}
             </div>
         </li>
-    </NuxtLink>
+    </nuxt-link>
 </template>
 
 <script setup lang="ts">
