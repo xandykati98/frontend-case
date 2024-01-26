@@ -23,7 +23,7 @@ const layout = useLayoutStore();
         &.minimized {
             width: calc(100% - #{$mini-sidebar-width});
             margin-left: $mini-sidebar-width;
-            transition: 0;
+            transition: 0s;
         }
         @media screen and (max-width: 1024px) {
             transition: 0s;

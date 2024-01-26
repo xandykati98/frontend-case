@@ -1,0 +1,68 @@
+<template>
+    <div class="card">
+        <div class="title">
+            <section>
+                <nuxt-icon :name="icon || ''" />
+                <h3>{{ title }}</h3>
+            </section>
+            <slot name="title-inner"/>
+        </div>
+        <slot name="card-inner"/>
+    </div>
+</template>
+<script setup lang="ts">
+defineProps({
+    title: String,
+    icon: String,
+})
+</script>
+<style lang="scss" >
+.card {
+    & .title {
+        & button {
+            padding: 6px 8px!important;
+        }
+    }
+}
+</style>
+<style lang="scss" scoped>
+.card {
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    border: 1px solid $border;
+    background: $bg;
+    /* regular-shadow/x-small */
+    box-shadow: 0px 1px 2px 0px rgba(228, 229, 231, 0.24);
+    & .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        & section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            & h3 {
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+                letter-spacing: 0em;
+                text-align: left;
+                margin: unset;
+                padding-right: 10px;
+            }
+            & .nuxt-icon {
+                width: 24px;
+                height: 24px;
+                color: $text-default;
+            }
+        }
+    }
+}
+</style>

@@ -28,6 +28,7 @@
 </template>
 
 <script lang="ts" setup>
+// @ts-ignore
 import { useNuxtApp } from '#app'
 import { useUserStore } from '../../stores/user'
 import { useLayoutStore } from '../../stores/layout'
