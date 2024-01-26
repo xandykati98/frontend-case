@@ -84,15 +84,15 @@ $highligh-bg: #F6F8FA;
                 opacity: 1;
             }
         }
-        &::before {
-            content: "";
-            position: absolute;
-            width: 4px;
-            height: 20px;
-            border-radius: 0px 4px 4px 0px;
-            background: $primary;
-            left: -20px;
-        }
+        // &::before {
+        //     content: "";
+        //     position: absolute;
+        //     width: 4px;
+        //     height: 20px;
+        //     border-radius: 0px 4px 4px 0px;
+        //     background: $primary;
+        //     left: -20px;
+        // }
     }
 }
 .link:hover {

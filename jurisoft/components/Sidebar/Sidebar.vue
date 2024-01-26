@@ -27,6 +27,7 @@
     padding: 0px;
     margin: 0px;
     width: 100%;
+    position: relative;
   }
 </style>
 <style lang="scss" scoped>
