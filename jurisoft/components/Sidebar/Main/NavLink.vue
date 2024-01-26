@@ -3,7 +3,7 @@
         <li class="item">
             <div class="contents">
                 <div class="icon">
-                    <SvgIcon :name="icon"  height="20" width="20"/>
+                    <SvgIcon :name="icon || ''"  height="20" width="20"/>
                 </div>
                 <span class="title">
                     {{ title }}
@@ -17,13 +17,31 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
-defineProps(['title', 'icon', 'to', 'height', 'width']);
+defineProps({
+    title: String,
+    icon: String,
+    to: String,
+})
 </script>
 
 <style lang="scss" scoped>
-$highligh-bg: #F6F8FA;
+.minimized {
+    & .link {
+        width: fit-content;
+        align-self: center;
+        height: 40px;
+        & .item {
+            & .contents {
+                & .title {
+                    display: none;
+                }
+            }
+            & .caret {
+                display: none;
+            }
+        }
+    }
+}
 .link {
     padding: 8px 12px 8px 12px;
     text-decoration: none!important;
@@ -68,10 +86,10 @@ $highligh-bg: #F6F8FA;
         }
     }
     &:hover {
-        background: $highligh-bg;
+        background: $highlight-bg;
     }
     &.active {
-        background: $highligh-bg;
+        background: $highlight-bg;
         & .item {
             & .title {
                 color: $text-highlight;

@@ -17,8 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
 defineProps({
     title: String,
     icon: String,
@@ -27,7 +25,23 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
-$highligh-bg: #F6F8FA;
+.minimized {
+    & .link {
+        width: fit-content;
+        align-self: center;
+        height: 40px;
+        & .item {
+            & .contents {
+                & .title {
+                    display: none;
+                }
+            }
+            & .caret {
+                display: none;
+            }
+        }
+    }
+}
 .link {
     padding: 8px 12px 8px 12px;
     text-decoration: none!important;
@@ -72,10 +86,10 @@ $highligh-bg: #F6F8FA;
         }
     }
     &:hover {
-        background: $highligh-bg;
+        background: $highlight-bg;
     }
     &.active {
-        background: $highligh-bg;
+        background: $highlight-bg;
         & .item {
             & .title {
                 color: $text-highlight;

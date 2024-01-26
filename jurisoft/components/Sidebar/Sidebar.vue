@@ -1,6 +1,5 @@
-
 <template>
-    <div class="container-sidebar">
+    <div :class="`container-sidebar ${layout.isMinimized ? 'minimized' : ''}`">
 		<div class="top">
 			<SidebarHeader/>
 			<section class="sidebar-lists">
@@ -14,7 +13,22 @@
 		</div>
     </div>
 </template>
+<script setup lang="ts">
+import { useLayoutStore } from '../../stores/layout'
+
+const layout = useLayoutStore();
+</script>
 <style lang="scss">
+.minimized {
+	& .sidebar-lists {
+		padding: 20px 8px 16px 8px;
+	}
+	& .nav-group {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}
 .list-title {
     text-transform: uppercase;
     padding: 4px;
@@ -58,6 +72,12 @@
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
+	transition: 0s;
+	width: 100%;
+	&.minimized {
+		width: 80px;
+		transition: $sidebar-width-transition;
+	}
 }
 .bottom {
     display: flex;

@@ -1,5 +1,4 @@
 <template>
-    
     <NuxtLink :to="to" class="link" active-class="active">
         <li class="item">
             <div class="contents">
@@ -18,18 +17,38 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
-defineProps(['title', 'to', 'color', 'command']);
+defineProps({
+    title: String,
+    to: String,
+    color: String,
+    command: String,
+})
 </script>
 
 <style lang="scss" scoped>
+.minimized {
+    & .link {
+        width: 40px;
+        & .item {
+            justify-content: center;
+            & .contents {
+                & .title {
+                    display: none;
+                }
+            }
+            & .command {
+                display: none;
+            }
+        }
+    }
+}
 .link {
     display: flex;
     width: 100%;
     padding: 8px 12px;
     align-items: center;
     text-decoration: none;
+    border-radius: 8px;
     & .item {
         width: 100%;
         display: flex;
@@ -69,6 +88,9 @@ defineProps(['title', 'to', 'color', 'command']);
             letter-spacing: -0.084px;
             height: 20px;
         }
+    }
+    &:hover {
+        background-color: $highlight-bg;
     }
 }
 </style>

@@ -13,3 +13,16 @@ const purple = '#6E3FF3';
 const red = '#DF1C41';
 const pink = '#E255F2';
 </script>
+<style lang="scss" scoped>
+.minimized {
+    & .list-title {
+        text-align: center;
+    }
+    & .nav-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+</style>

@@ -1,23 +1,61 @@
 <template>
-    <div class="container-profile">
+    <div class="container-profile" @click="store.loadUser">
         <div class="divider"></div>
-        <section>
-            <div class="container-avatar-intro">
-                <div class="avatar">
-                    <SvgIcon name="logo" height="40" width="40"/>
+        <NuxtLink to="#">
+            <section>
+                <div class="container-avatar-intro">
+                    <div class="avatar">
+                        <NuxtImg :src="store.user?.avatar" alt="avatar"/>
+                    </div>
+                    <div class="intro">
+                        <h1>
+                            {{ store.user?.name }} <svg-icon name="verified" width="20" height="20"/>
+                        </h1>
+                        <h3>{{ store.user?.email }}</h3>
+                    </div>
                 </div>
-                <div class="intro">
-                    <h1>Jurisoft</h1>
-                    <h3>Marketing Jurídico</h3>
+                <div class="caret">
+                    <svg-icon name="caret-right" width="20" height="20"/>
                 </div>
-            </div>
-            <div class="caret">
-                <svg-icon name="caret-down" width="24" height="24"/>
-            </div>
-        </section>
+            </section>
+        </NuxtLink>
     </div>
 </template>
+
+<script setup lang="ts">
+import { useUserStore } from '../../stores/user'
+const store = useUserStore()
+</script>
+
 <style lang="scss" scoped>
+.minimized {
+    & .container-profile {
+        padding: 0px;
+        padding-top: 12px;
+        justify-content: center;
+        & .divider {
+            width: 40px;
+        }
+        & a {
+            display: flex;
+            & section {
+                justify-content: center;
+                & .container-avatar-intro {
+                    & .avatar {
+                        margin-right: 0px;
+                    }
+                }
+                & .intro {
+                    display: none;
+                }
+                & .caret {
+                    display: none;
+                }
+            }
+        }
+    }
+
+}
 .container-profile {
     width: 100%;
     height: 88px;
@@ -26,19 +64,29 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    transition: $sidebar-transition;
+    & a {
+        text-decoration: none;
+    }
     & section {
         width: 100%;
         margin: 12px;
         display: flex;
         justify-content: space-between;
+        
         & .container-avatar-intro {
             display: flex;
             justify-content: flex-start;
             & .avatar {
+                transition: $sidebar-transition;
                 margin-right: 12px;
                 border-radius: 50%;
                 width: 40px;
                 height: 40px;
+                & img {
+                    width: 100%;
+                    height: 100%;
+                }
             }
         }
         & .intro {
@@ -56,6 +104,8 @@
             margin-bottom: 4px;
             line-height: 20px; /* 142.857% */
             letter-spacing: -0.084px;
+            display: flex;
+            align-items: center;
         }
         & .intro h3 {
             color: $text-default;
@@ -65,13 +115,15 @@
             line-height: 16px;
         }
         & .caret {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
+            padding: 2px;
             display: flex;
             justify-content: center;
             align-items: center;
             align-self: center;
             cursor: pointer;
+            box-sizing: content-box;
         }
     }
 }

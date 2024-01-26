@@ -2,7 +2,7 @@
     <section>
         <div class="list-title">Main</div>
         <ul class="nav-group">
-            <div class="active-tracker" :style="`top: ${trackerTop}; left: ${activeLink === -1 ? -24 : -20}px`"></div>
+            <div class="active-tracker" :style="`top: ${trackerTop}; left: ${activeLink === -1 ? -24 : layout.minimized ? -8 : -20}px`"></div>
             <SidebarMainNavLink v-for="(item, index) in navLinks" :key="item.title" :title="item.title" :icon="item.icon" :to="item.to" @click="setActiveLink(index)" />
         </ul>
     </section>
@@ -11,6 +11,10 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
+
+import { useLayoutStore } from '../../stores/layout'
+
+const layout = useLayoutStore();
 
 type NavLink = {
     title: string,
@@ -62,7 +66,7 @@ const navLinks = ref<NavLink[]>([
 ])
 const activeLink = ref(0)
 const links = ref<NavLink[]>([])
-
+const lastActiveLink = ref(0)
 const setActiveLink = (index: number) => {
     activeLink.value = index
 }
@@ -72,12 +76,16 @@ const registerLink = (link: NavLink) => {
 }
 
 const trackerTop = computed(() => {
+    if (activeLink.value === -1) {
+        return `${(lastActiveLink.value * (36 + 4)) + (lastActiveLink.value * 4) + 8}px`
+    }
     return `${(activeLink.value * (36 + 4)) + (activeLink.value * 4) + 8}px`
 })
 
 const route = useRoute()
 
 watch(() => route.path, (to) => {
+    lastActiveLink.value = activeLink.value
     // if "to" not in links
     if (!links.value.find(link => link.to === to)) {
         setActiveLink(-1)
@@ -104,6 +112,17 @@ onMounted(() => {
     border-radius: 0px 4px 4px 0px;
     background: $primary;
     left: -20px;
-    transition: 0.2s ease-in-out;
+    transition: top 0.2s ease-in-out;
+}
+.nav-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+.minimized {
+    & .list-title {
+        text-align: center;
+    }
 }
 </style>
