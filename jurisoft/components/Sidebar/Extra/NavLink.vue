@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 
-const props = defineProps({
+defineProps({
     title: String,
     icon: String,
     to: String,

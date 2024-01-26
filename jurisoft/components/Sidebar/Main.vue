@@ -97,13 +97,13 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-    .active-tracker {
-        position: absolute;
-        width: 4px;
-        height: 20px;
-        border-radius: 0px 4px 4px 0px;
-        background: $primary;
-        left: -20px;
-        transition: 0.2s ease-in-out;
-    }
+.active-tracker {
+    position: absolute;
+    width: 4px;
+    height: 20px;
+    border-radius: 0px 4px 4px 0px;
+    background: $primary;
+    left: -20px;
+    transition: 0.2s ease-in-out;
+}
 </style>

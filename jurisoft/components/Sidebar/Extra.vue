@@ -9,8 +9,8 @@
     </div>
 </template>
 <style lang="scss" scoped>
-    .sidebar-lists {
-        gap: 0;
-        align-self: flex-end;
-    }
+.sidebar-lists {
+    gap: 0;
+    align-self: flex-end;
+}
 </style>
