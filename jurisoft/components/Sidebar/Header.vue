@@ -59,6 +59,7 @@ const logoClick = () => {
     justify-content: center;
     flex-wrap: wrap;
     transition: $sidebar-transition;
+    align-content: space-between;
     & section {
         width: 100%;
         margin: 12px;
@@ -111,10 +112,10 @@ const logoClick = () => {
     }
 }
 .divider {
-    border-top: 1px solid $border;
-    height: 0px;
     width: 232px;
     display: flex;
-    
+    height: 1px;
+    width: 100%;
+    background: $border;
 }
 </style>

@@ -1,7 +1,11 @@
 <template>
     <main>
         <TimeTracker/>
-        <TimeTracker/>
+        <div class="subdivider">
+            <TimeReport/>
+            <CoursesProgress/>
+        </div>
+        <Highlights/>
         <TimeTracker/>
         <TimeTracker/>
     </main>
@@ -17,9 +21,21 @@ main {
     background: $bg;
     display: grid;
     gap: 24px;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     & > * {
         grid-column: span 1;
+    }
+    & .subdivider {
+        grid-column: 2;
+        gap: 24px;
+        grid-template-columns: auto auto;
+        & > * {
+            grid-column: span 2;
+        }
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        flex-direction: column;
     }
 }
 </style>

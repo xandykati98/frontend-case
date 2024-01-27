@@ -10,6 +10,7 @@
             </div>
             <div class="bottom">
                 <SidebarExtra/>
+                <div class="divider"></div>
                 <SidebarProfile/>
             </div>
         </div>
@@ -21,21 +22,7 @@ import { useLayoutStore } from '../../stores/layout'
 const layout = useLayoutStore();
 </script>
 <style lang="scss">
-.sidebar {
-    width: $sidebar-width;
-    height: 100vh;
-    background-color: #FFFFFF;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
 .minimized {
-    &.sidebar {
-        width: $mini-sidebar-width;
-    }
-	& .sidebar-lists {
-		padding: 20px 8px 16px 8px;
-	}
 	& .nav-group {
 		display: flex;
 		flex-wrap: wrap;
@@ -54,6 +41,23 @@ const layout = useLayoutStore();
     letter-spacing: 0.48px;
     text-transform: uppercase;
 }
+.nav-group {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    position: relative;
+}
+</style>
+<style lang="scss" scoped>
+.sidebar {
+    width: $sidebar-width;
+    height: 100vh;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 .sidebar-lists {
     display: flex;
     padding: 20px 20px 16px 20px;
@@ -71,19 +75,16 @@ const layout = useLayoutStore();
         align-self: stretch;
   }
 }
-.nav-group {
-    list-style: none;
-    padding: 0px;
-    margin: 0px;
-    width: 100%;
-    position: relative;
-}
-</style>
-<style lang="scss" scoped>
 .minimized {
     .container-sidebar {
 		width: $mini-sidebar-width;
 		transition: $sidebar-width-transition;
+	}
+    &.sidebar {
+        width: $mini-sidebar-width;
+    }
+	& .sidebar-lists {
+		padding: 20px 8px 16px 8px;
 	}
 }
 .container-sidebar {
@@ -129,5 +130,11 @@ const layout = useLayoutStore();
     position: absolute;
     bottom: 0;
     background: $bg;
+}
+.divider {
+    height: 1px;
+    background: $border;
+    width: 232px;
+    display: flex;
 }
 </style>

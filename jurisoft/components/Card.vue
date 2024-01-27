@@ -34,11 +34,11 @@ defineProps({
     gap: 16px;
     flex-shrink: 0;
     border-radius: 16px;
-    border: 1px solid $border;
     background: $bg;
-    /* regular-shadow/x-small */
-    box-shadow: 0px 1px 2px 0px rgba(228, 229, 231, 0.24);
+    /** não utilizei "border" pois uma "height" precisa ser determinada para o "box-sizing: border-box" fazer efeito */
+    box-shadow: 0px 1px 2px 0px rgba(228, 229, 231, 0.24), 0px 0px 0px 1px $border;
     & .title {
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: space-between;

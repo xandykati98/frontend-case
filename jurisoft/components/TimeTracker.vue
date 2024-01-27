@@ -1,7 +1,7 @@
 <template>
     <Card title="Rastreador de tempo" icon="rastreador">
         <template #title-inner>
-            <Button icon="historico" >Histórico</Button>
+            <Button mini icon="historico">Histórico</Button>
         </template>
         <template #card-inner>
             <div class="timer">
@@ -58,6 +58,7 @@ const activeTrack = ref(0);
 function toggleRunning() {
     running.value = !running.value;
     if (interval.value && running.value) {
+        // fazer uma request para o servidor adicionando o tempo no banco de dados
         return clearInterval(interval.value);
     }
     const cancel = setInterval(() => {
@@ -120,7 +121,7 @@ function activateTrack(track: Track) {
 <style lang="scss" scoped>
 .timer {
     width: 100%;
-    height: 100%;
+    height: 158px;
     display: flex;
     flex-direction: column;
     gap: 0px;
@@ -130,6 +131,7 @@ function activateTrack(track: Track) {
     border: 1px solid $border;
     background: $bg;
     box-shadow: 0px 1px 2px 0px rgba(228, 229, 231, 0.24);
+    overflow: hidden;
     & .timer-inner {
         width: 100%;
         display: flex;
@@ -149,16 +151,17 @@ function activateTrack(track: Track) {
                 font-style: normal;
                 font-weight: 500;
                 line-height: 12px;
+                height: 12px;
                 letter-spacing: 0.22px;
                 text-transform: uppercase;
                 text-align: center;
-                margin-top: 2px;
             }
             & h1 {
                 font-size: 40px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: 48px;
+                height: 48px;
                 letter-spacing: -0.4px;
                 margin: unset;
                 & span {
@@ -180,7 +183,8 @@ function activateTrack(track: Track) {
             display: flex;
             align-items: center;
             gap: 4px;
-            margin-bottom: 2px;
+            padding-top: 0px;
+            padding-bottom: 0px;
             &.running {
                 color: $text-default;
                 &:hover {
@@ -204,6 +208,7 @@ function activateTrack(track: Track) {
         align-items: center;
         background: $highlight-bg;
         border-bottom: 1px solid $border;
+        height: 32px;
         padding: 6px 10px 6px 12px;
         & section {
             display: flex;
@@ -240,11 +245,14 @@ function activateTrack(track: Track) {
 }
 .bottom-tracker {
     width: 100%;
+    margin-bottom: 4px;
     & > span {
         font-size: 11px;
         font-style: normal;
         font-weight: 500;
         line-height: 12px;
+        height: 12px;
+        display: block;
         letter-spacing: 0.22px;
         text-transform: uppercase;
         color: $text-default;
@@ -254,6 +262,7 @@ function activateTrack(track: Track) {
         padding: unset;
         width: 100%;
         gap: 16px;
+        margin: 14px 0 0 0;
         display: flex;
         flex-direction: column;
         & .select-track {

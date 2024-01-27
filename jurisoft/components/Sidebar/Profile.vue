@@ -1,6 +1,5 @@
 <template>
     <div class="container-profile" @click="store.loadUser">
-        <div class="divider"></div>
         <nuxt-link to="user" active-class="active">
             <section>
                 <div class="container-avatar-intro">
@@ -157,11 +156,5 @@ const store = useUserStore()
             box-sizing: content-box;
         }
     }
-}
-.divider {
-    border-top: 1px solid $border;
-    height: 0px;
-    width: 232px;
-    display: flex;
 }
 </style>
