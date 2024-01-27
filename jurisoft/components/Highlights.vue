@@ -272,7 +272,7 @@ onMounted(() => {
     & .destaque-description {
         height: 16px;
     }
-    & .destaque-top.active, & .destaque-description, & .avatar {
+    & .destaque-top.active, & .destaque-description, & .inner .avatar {
         animation: fastOpacity 0.2s ease-in-out forwards;
         @keyframes fastOpacity {
             0% {

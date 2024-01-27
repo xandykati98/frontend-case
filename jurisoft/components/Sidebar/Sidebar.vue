@@ -57,6 +57,9 @@ const layout = useLayoutStore();
     position: fixed;
     top: 0;
     left: 0;
+    @media (max-width: $mobileWide) {
+        position: fixed;
+    }
 }
 .sidebar-lists {
     display: flex;

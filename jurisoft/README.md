@@ -1,7 +1,7 @@
 # Jurisoft - Desafio de Desenvolvimento Front-end
 
 ### Candidato: Alexandre dos Santos Pereira <br> Email: xandykati98@gmail.com
-### Esta é a versão em **[TypeScript](https://github.com/xandykati98/frontend-case/)**, a versão em **[JavaScript](https://github.com/xandykati98/frontend-case-js/)** também está disponível.
+### Esta é versão foi escrita usando **TypeScript**
 ## Setup
 
 Instale as dependências:

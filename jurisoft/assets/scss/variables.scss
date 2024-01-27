@@ -24,4 +24,15 @@ $mini-sidebar-width: 80px;
 
 $button-radius: 10px;
 
+
+$desktop: 1024px;
+$desktopMedium: 1280px;
+$desktopWide: 1600px;
+
+$mobile: 320px;
+$mobileMedium: 375px;
+$mobileWide: 425px;
+
+$tablet: 768px;
+
 @import "./emoji"
