@@ -115,7 +115,6 @@ const logoClick = () => {
     width: 232px;
     display: flex;
     height: 1px;
-    width: 100%;
     background: $border;
 }
 </style>

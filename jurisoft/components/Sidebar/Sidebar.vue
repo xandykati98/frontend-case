@@ -86,6 +86,9 @@ const layout = useLayoutStore();
 	& .sidebar-lists {
 		padding: 20px 8px 16px 8px;
 	}
+    & .divider {
+        width: 40px;
+    }
 }
 .container-sidebar {
     box-shadow: 1px 0px 0px 0px $border;
@@ -130,6 +133,9 @@ const layout = useLayoutStore();
     position: absolute;
     bottom: 0;
     background: $bg;
+
+    width: 100%;
+    justify-content: center;
 }
 .divider {
     height: 1px;

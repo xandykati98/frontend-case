@@ -4,7 +4,13 @@ interface APIResponse<Type> {
     message: string,
     data: Type;
 }
-
+interface User {
+    name: string,
+    email: string,
+    avatar: string,
+    verified: boolean,
+    job: string,
+}
 interface TimeReport {
     /**
      * Total em milissegundos trabalhados
@@ -20,4 +26,4 @@ interface TimeReport {
     },
 }
 
-export { TimeReport, APIResponse };
+export { TimeReport, APIResponse, User };

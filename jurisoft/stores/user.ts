@@ -30,7 +30,7 @@ export const useUserStore = defineStore('user', {
                 'getUser',
                 () => $fetch(userUrl)
             )
-            this.user = data.value?.data.user || null;
+            this.user = data.value?.data || null;
             this.loading = false;
 
             return this.user

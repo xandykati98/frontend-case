@@ -1,13 +1,12 @@
 <template>
-    <Card title="Horas diárias de trabalho" icon="relogio">
+    <Card :class="loading ? 'loading' : ''" title="Horas diárias de trabalho" icon="relogio">
         <template #title-inner>
             <Button mini @click="details = !details">{{details ? 'Ocultar' : 'Detalhes'}}</Button>
         </template>
         <template #card-inner>
             <div class="divider"></div>
             <div class="to-text">
-                <h2 v-if="loading">Carregando... <nuxt-img src="hourglass-with-flowing-sand.png"/></h2>
-                <h2 v-else><b>{{ totalHours }}</b> horas <b>{{ totalMinutes }}</b> minutos no total <nuxt-img src="hourglass-with-flowing-sand.png"/></h2>
+                <h2><b>{{ totalHours }}</b> horas <b>{{ totalMinutes }}</b> minutos no total <nuxt-img src="hourglass-with-flowing-sand.png"/></h2>
             </div>
             <div :class="'bars-container ' + (details ? 'detailed' : '')">
 
@@ -60,7 +59,7 @@ const totalMinutes = computed(() => {
 })
 
 $fetch('/api/time_report')
-    .then((res:APIResponse<TimeReport>) => {
+    .then(async (res:APIResponse<TimeReport>) => {
         report.value = res.data
         loading.value = false;
     })
@@ -83,6 +82,30 @@ $fetch('/api/time_report')
         background: $border;
     }
 }
+.loading {
+    & .to-text {
+        & h2 {
+            & b {
+                color: $text-highlight-off;
+            }
+            color: $text-default-off;
+        }
+    }
+    & .bars-container {
+        & .bar {
+            background-color: $disabled!important;
+            width: 100%;
+        }
+    }
+    & .tags-container {
+        & .tag {
+            & .tag-color {
+                background-color: $disabled!important;
+                color: $disabled!important;
+            }
+        }
+    }
+}
 .tags-container {
     width: 100%;
     display: flex;
@@ -100,6 +123,7 @@ $fetch('/api/time_report')
             height: 8px;
             border-radius: 50%;
             margin: 4px;
+            transition: all 0.2s ease-in-out;
         }
         & .tag-text {
             & h3 {

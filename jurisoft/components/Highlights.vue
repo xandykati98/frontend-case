@@ -13,24 +13,26 @@
                 </div>
                 <div>
                     <h1>
-                        Matthew Johnson
+                        {{ tabsInfo[activeTab].user?.name }}
                     </h1>
                     <h3>
-                        Engenheiro de Software
+                        {{ tabsInfo[activeTab].user?.job }}
                     </h3>
                 </div>
                 <div class="content">
-                    <div class="inner">
+                    <div ref="inner" class="inner">
                         <nuxt-icon class="destaque-content" name="destaque-content" filled/>
                         <nuxt-icon class="destaque-content-inner-star" name="destaque-content-inner-star" filled/>
                         <nuxt-icon class="destaque-content-outer-star" name="destaque-content-outer-star" filled/>
-                        <nuxt-img class="avatar" alt="Avatar Matthew Johnson" src="profile2.png"/>
-                        <nuxt-icon class="left-flag" name="left-flag" filled/>
-                        <nuxt-icon class="right-flag" name="right-flag" filled/>
+                        <nuxt-img class="avatar" alt="Avatar Matthew Johnson" :src="tabsInfo[activeTab].user?.avatar"/>
+                        <div ref="flags" class="flags">
+                            <nuxt-icon class="left-flag" name="left-flag" filled/>
+                            <nuxt-icon class="right-flag" name="right-flag" filled/>
+                        </div>
                     </div>
                 </div>
                 <h3 class="destaque-description">
-                    Funcionário de melhor desempenho de dezembro!
+                    {{ tabsInfo[activeTab].description }}
                 </h3>
             </div>
         </template>
@@ -38,18 +40,75 @@
 </template>
 
 <script setup lang="ts">
-import { type ComponentPublicInstance, computed, ref } from "vue";
+import { type ComponentPublicInstance, computed, ref, watch, onMounted } from "vue";
+import { type User } from "../server/crosstypes";
 
 const activeTab = ref<string>('Geral');
 type Ref = Element | ComponentPublicInstance | null;
 type Refs = {
     [tabName: string]: Ref
-}
+};
+
 const tabsRefs = ref<Refs>({
     'Geral': null,
     'Comentários': null,
     'Prêmios': null
 });	
+const inner = ref<Ref>(null);
+const flags = ref<Ref>(null);
+function resetAnimation() {
+    // https://stackoverflow.com/questions/6268508/restart-animation-in-css3-any-better-way-than-removing-the-element
+    const elInner = inner.value as HTMLElement;
+    const elFlags = flags.value as HTMLElement;
+    console.log(elInner, elFlags, inner, flags)
+    elInner.style.animation = 'none';
+    elInner.offsetHeight; /* trigger reflow */
+    elInner.style.animation = '';
+    
+    elFlags.style.animation = 'none';
+    elFlags.offsetHeight; /* trigger reflow */
+    elFlags.style.animation = '';
+}
+// watch for changes in the active tab, and reset the animation
+watch(activeTab, resetAnimation);
+
+const tabsInfo = ref<{
+    [tabName: string]: {
+        description: string,
+        user?: User
+    }
+}>({
+    'Geral': {
+        description: 'Funcionário de melhor desempenho de dezembro!',
+        user: {
+            name: 'Matthew Johnson',
+            email: 'matthew@jurisoft.com',
+            avatar: 'profile2.png',
+            verified: true,
+            job: 'Engenheiro de Software',
+        }
+    },
+    'Comentários': {
+        description: 'Funcionário mais comentado!',
+        user: {
+            name: 'Matthew Johnson2',
+            email: 'matthew@jurisoft.com',
+            avatar: 'profile.png',
+            verified: true,
+            job: 'Engenheiro de Software',
+        }
+    },
+    'Prêmios': {
+        description: 'Funcionário mais premiado!',
+        user: {
+            name: 'Matthew Johnson3',
+            email: 'matthew@jurisoft.com',
+            avatar: 'profile2.png',
+            verified: true,
+            job: 'Engenheiro de Software',
+        }
+    }
+})
 
 function setTabRef(el: Ref, tabName: keyof Refs) {
     tabsRefs.value[tabName] = el;
@@ -58,8 +117,10 @@ function setTabRef(el: Ref, tabName: keyof Refs) {
 // compute the 'width' of the tab-tracker, based on the width of the active tab
 const tabTrackerWidth = computed(() => {
     const tab = tabsRefs.value[activeTab.value];
-    if (!tab) return `calc((100% / ${Object.keys(tabsRefs.value).length}) - 4px)`;
-    return (tab as Element).clientWidth + 'px';
+    const defaultWidth = `calc((100% / ${Object.keys(tabsRefs.value).length}) - 4px)`;
+    if (!tab) return defaultWidth
+    const foundWidth = (tab as HTMLElement).offsetWidth;
+    return foundWidth > 0 ? foundWidth + 'px' : defaultWidth;
 })
 
 // compute the 'left' of the tab-tracker, based on the position of the active tab
@@ -72,6 +133,10 @@ const tabTrackerLeft = computed(() => {
 function activateTab(tabName: string | number) {
     activeTab.value = tabName as string;
 }
+
+onMounted(() => {
+    activateTab('Geral');
+})
 </script>
 
 <style lang="scss" scoped>
@@ -159,6 +224,17 @@ function activateTab(tabName: string | number) {
         position: relative;
         width: 100%;
         height: 148px;
+        animation: surge 0.6s ease-in-out forwards;
+        @keyframes surge {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
         & .destaque-content-inner-star {
             z-index: 2;
         }
@@ -174,6 +250,23 @@ function activateTab(tabName: string | number) {
             box-shadow: 0px 0px 0px 12px white, 0px 0px 0px 15px #e4a890;
             border-radius: 50%;
             z-index: 3;
+        }
+        & .flags {
+            animation: surgeOnlyTranslateY 0.6s ease-in-out forwards;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translate(0%, 10px);
+            @keyframes surgeOnlyTranslateY {
+                0% {
+                    transform: translate(0%, -50px);
+                }
+                100% {
+                    transform: translate(0%, -50%);
+                }
+            }
         }
         & .left-flag {
             z-index: 1;
