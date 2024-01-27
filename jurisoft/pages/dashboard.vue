@@ -6,8 +6,12 @@
             <CoursesProgress/>
         </div>
         <Highlights/>
-        <TimeTracker/>
-        <TimeTracker/>
+        <div class="maximize-courses">
+            <Courses/>
+        </div>
+        <div class="retrofit">
+            <Feedback/>
+        </div>
     </main>
 </template>
 <script setup>
@@ -17,16 +21,33 @@
 </script>
 <style lang="scss" scoped>
 main {
-    padding: 4px 32px 0px 32px;
+    padding: 4px 32px 32px 32px;
     background: $bg;
     display: grid;
     gap: 24px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     & > * {
-        grid-column: span 1;
+        grid-column: span 2;
+        @media (max-width: 1200px) {
+            grid-column: span 3;
+        }
+        @media (max-width: 800px) {
+            grid-column: span 6;
+        }
+    }
+    & .retrofit {
+        @media (max-width: 1200px) {
+            grid-row: 2;
+        }
     }
     & .subdivider {
-        grid-column: 2;
+        grid-column: span 2;
+        @media (max-width: 1200px) {
+            grid-column: span 3;
+        }
+        @media (max-width: 800px) {
+            grid-column: span 6;
+        }
         gap: 24px;
         grid-template-columns: auto auto;
         & > * {
@@ -36,6 +57,12 @@ main {
         gap: 24px;
         flex-wrap: wrap;
         flex-direction: column;
+    }
+    .maximize-courses {
+        grid-column: span 4;
+        @media (max-width: 1200px) {
+            grid-column: span 6;
+        }
     }
 }
 </style>

@@ -22,7 +22,7 @@
     </Card>
 </template>
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import { type APIResponse } from "../server/crosstypes";
 import gsap from 'gsap';
 

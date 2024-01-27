@@ -6,7 +6,7 @@
         <template #card-inner>
             <div class="divider"></div>
             <div class="to-text">
-                <h2><b>{{ totalHours }}</b> horas <b>{{ totalMinutes }}</b> minutos no total <nuxt-img src="hourglass-with-flowing-sand.png"/></h2>
+                <h2><b>{{ totalHours }}</b> horas <b>{{ totalMinutes }}</b> minutos no total <span class="time-emoji" v-html="unifiedToHTML('⏳')"></span></h2>
             </div>
             <div :class="'bars-container ' + (details ? 'detailed' : '')">
 
@@ -29,8 +29,9 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from "vue"
-// @ts-ignore
-import { type APIResponse, type TimeReport } from "@/server/crosstypes";
+import { useEmoji } from "../composables/emoji";
+import { type APIResponse, type TimeReport } from "../server/crosstypes";
+const { unifiedToHTML } = useEmoji()
 
 const details = ref(false);
 
@@ -67,6 +68,25 @@ $fetch('/api/time_report')
         console.error(err)
     })
 </script>
+<style lang="scss">
+.to-text {
+    & .time-emoji {
+        & .emoji {
+            animation: fadeIn 0.5s ease-in-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+</style>
 <style lang="scss" scoped>
 .divider {
     width: 100%;
@@ -191,6 +211,20 @@ $fetch('/api/time_report')
     justify-content: flex-start;
     align-items: center;
     height: 24px;
+    & .time-emoji {
+        & > span {
+            animation: fadeIn 0.1s ease-in-out forwards;
+            opacity: 0;
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+    }
     & h2 {
         margin: unset;
         font-size: 16px;

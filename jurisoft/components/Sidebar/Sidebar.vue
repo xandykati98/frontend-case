@@ -102,11 +102,11 @@ const layout = useLayoutStore();
 }
 .top {
     height: calc(100% - 200px);
-    overflow: auto;
-    
+    overflow: overlay;
+    margin-right: -2px;
     /* custom scrollbar */
     &::-webkit-scrollbar {
-        width: 20px;
+        width: 3px;
     }
 
     &::-webkit-scrollbar-track {
@@ -116,7 +116,8 @@ const layout = useLayoutStore();
     &::-webkit-scrollbar-thumb {
         background-color: #d6dee1;
         border-radius: 20px;
-        border: 6px solid transparent;
+        margin: 1px;
+        width: 3px;
         background-clip: content-box;
     }
 

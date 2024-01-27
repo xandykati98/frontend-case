@@ -4,7 +4,15 @@ interface APIResponse<Type> {
     message: string,
     data: Type;
 }
-
+type Course = {
+    professor: User,
+    name: string,
+    progress: number,
+    status: 'Em andamento' | 'Concluído',
+    dateStart: Date,
+    dateEnd: Date,
+    id: string
+}
 type Comment = {
     user: User,
     message: string,
@@ -45,4 +53,4 @@ interface TimeReport {
     },
 }
 
-export { TimeReport, APIResponse, User, TabsInfo, Comment, Tab };
+export { TimeReport, APIResponse, User, TabsInfo, Comment, Tab, Course };

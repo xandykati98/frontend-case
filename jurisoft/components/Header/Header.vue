@@ -5,7 +5,7 @@
                 <div class="avatar">
                     <nuxt-img :src="store.user?.avatar" alt="avatar"/>
                 </div>
-                <div class="intro" v-if="!layout.isMinimized ? $viewport.isGreaterOrEquals('desktop') : true">
+                <div class="intro" v-if="!layout.isMinimized ? $viewport.isGreaterOrEquals('desktop') : $viewport.isGreaterOrEquals('tablet')">
                     <h1>
                         {{ store.user?.name }}
                     </h1>
@@ -25,8 +25,8 @@
                 <nuxt-icon name="notificacao"/>
                 <div class="notification-error"></div>
             </div>
-            <Button icon="calendario-alt">Calendário</Button>
-            <Button icon="plus" primary>Nova solicitação</Button>
+            <Button :only-icon="$viewport.isLessThan('tablet')" icon="calendario-alt">{{ $viewport.isGreaterOrEquals('tablet') ? 'Calendário' : '' }}</Button>
+            <Button :only-icon="$viewport.isLessThan('tablet')" icon="plus" primary>{{ $viewport.isGreaterOrEquals('tablet') ? 'Nova solicitação' : '' }}</Button>
         </section>
     </header>
 </template>
@@ -44,6 +44,27 @@ const store = useUserStore()
 const { $viewport } = useNuxtApp()
 
 </script>
+<style lang="scss">
+header {
+    & .container-avatar-intro {
+        & .intro {
+            & .emoji {
+                animation: fadeIn 0.5s ease-in-out forwards;
+                animation-delay: 0.2s;
+                opacity: 0;
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+</style>
 <style lang="scss" scoped>
 header {
     background: $bg;

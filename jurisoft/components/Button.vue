@@ -1,5 +1,10 @@
 <template>
-    <button :style="style || ''" :class="(primary ? 'primary' : 'default') + ' ' + (mini ? 'mini' : '')">
+    <button :style="style || ''" :class="{
+        'only-icon': onlyIcon,
+        mini: mini,
+        primary: primary,
+        'default': !primary
+    }">
         <nuxt-icon :name="icon" v-if="icon" class="icon" />
         <slot></slot>
     </button>
@@ -10,7 +15,8 @@ defineProps({
     icon: String,
     style: String,
     primary: Boolean,
-    mini: Boolean
+    mini: Boolean,
+    onlyIcon: Boolean
 })
 </script>
 <style lang="scss" scoped>
@@ -19,6 +25,11 @@ button {
     padding: 10px;
     &.mini {
         height: 32px;
+    }
+    &.only-icon {
+        & .icon {
+            margin-right: 0px;
+        }
     }
     &.primary {
         background: $primary;
