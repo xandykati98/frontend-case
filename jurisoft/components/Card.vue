@@ -1,5 +1,5 @@
 <template>
-    <div :class="'card ' + ($props.class || '')">
+    <div :class="'card ' + ($props.containerClass || '')">
         <div class="title">
             <section>
                 <nuxt-icon :name="icon || ''" />
@@ -14,7 +14,7 @@
 defineProps({
     title: String,
     icon: String,
-    class: String,
+    containerClass: String,
 })
 </script>
 <style lang="scss" >

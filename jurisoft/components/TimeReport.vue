@@ -1,5 +1,5 @@
 <template>
-    <Card :class="loading ? 'loading' : ''" title="Horas diárias de trabalho" icon="relogio">
+    <Card :containerClass="loading ? 'loading' : ''" title="Horas diárias de trabalho" icon="relogio">
         <template #title-inner>
             <Button mini @click="details = !details">{{details ? 'Ocultar' : 'Detalhes'}}</Button>
         </template>
@@ -124,6 +124,9 @@ $fetch('/api/time_report')
             border-radius: 50%;
             margin: 4px;
             transition: all 0.2s ease-in-out;
+            border: 2px solid $bg;
+            box-shadow: 0px 2px 4px 0px #1B1C1D0A;
+            box-sizing: content-box;
         }
         & .tag-text {
             & h3 {

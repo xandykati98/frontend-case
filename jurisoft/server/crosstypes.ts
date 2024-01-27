@@ -4,12 +4,31 @@ interface APIResponse<Type> {
     message: string,
     data: Type;
 }
+
+type Comment = {
+    user: User,
+    message: string,
+    id: string,
+    liked: boolean,
+}
+interface Tab {
+    user?: User | null,
+    comments?: Comment[] | null,
+}
+interface TabInfoFrontend extends Tab {
+    description: string,
+}
+type TabsInfo<T = TabInfoFrontend> = {
+    [tabName: string]: T
+    
+}
 interface User {
     name: string,
     email: string,
     avatar: string,
     verified: boolean,
     job: string,
+    pronouns?: 'ela/dela' | 'ele/dele' | 'neutro' | 'outro' | 'não informado',
 }
 interface TimeReport {
     /**
@@ -26,4 +45,4 @@ interface TimeReport {
     },
 }
 
-export { TimeReport, APIResponse, User };
+export { TimeReport, APIResponse, User, TabsInfo, Comment, Tab };

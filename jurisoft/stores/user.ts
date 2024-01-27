@@ -1,11 +1,7 @@
 import { useAsyncData } from "nuxt/app"
 import { defineStore } from "pinia"
+import type { User } from "~/server/crosstypes"
 
-interface User {
-    name?: string
-    email?: string
-    avatar?: string
-}
 export const useUserStore = defineStore('user', {
     state: () => <{
         user: User | null

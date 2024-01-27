@@ -1,7 +1,7 @@
 <template>
-    <Card title="Cursos - Progresso" icon="livro">
+    <Card :containerClass="progress === 0 ? 'loading' : ''" title="Cursos - Progresso" icon="livro">
         <template #title-inner>
-            <Button mini>Ver todos</Button>
+            <Button mini @click="toggleProgress">Ver todos</Button>
         </template>
         <template #card-inner>
             <div class="divider"></div>
@@ -10,26 +10,31 @@
                     radial-gradient(closest-side, white 79%, transparent 80% 100%),
                     conic-gradient(#FF4A00 ${progress}%, #E2E4E9 0)
                 `}">
-                    {{ progress }}%
+                    {{ progress.toFixed(0) }}%
                 </div>
                 <div class="progress-text">
-                    <h3>Diversidade da equipe</h3>
-                    <p>Projetado para promover a inclusividade e perspectivas diversas.</p>
-                    <nuxt-link to="#">Retomar curso</nuxt-link>
+                    <h3>{{ progress > 0 ? 'Diversidade da equipe' : 'Nenhum curso em andamento'}}</h3>
+                    <p>{{ progress > 0 ? 'Projetado para promover a inclusividade e perspectivas diversas.' : 'Não há progresso em nenhum curso ainda. Considere se inscrever em um.'}}</p>
+                    <nuxt-link to="#">{{ progress > 0 ? 'Retomar curso' : 'Inscrever-se'}}</nuxt-link>
                 </div>
             </div>
         </template>
     </Card>
 </template>
 <script setup lang="ts">
-import { onMounted, ref, toRefs } from "vue";
+import { onMounted, reactive, ref, watch } from "vue";
 import { type APIResponse } from "../server/crosstypes";
+import gsap from 'gsap';
+
 const progress = ref(0);
 
+function toggleProgress() {
+    gsap.to(progress, { duration: 0.5, value: progress.value === 25 ? 0 : 25 })
+}
 onMounted(() => {
     $fetch('/api/course_progress')
     .then((res: APIResponse<number>) => {
-        progress.value = res.data;
+        gsap.to(progress, { duration: 0.5, value: Number(res.data) || 0 })
     })
     .catch((err) => {
         console.error(err);
@@ -38,6 +43,15 @@ onMounted(() => {
 
 </script>
 <style lang="scss" scoped>
+.loading {
+    & .progress-container {
+        & .progress-text {
+            & h3 {
+                color: $text-default;
+            }
+        }
+    }
+}
 .divider {
     width: 100%;
     position: relative;
@@ -74,6 +88,7 @@ onMounted(() => {
         transition: all 0.2s ease-in-out;
     }    
     .progress-text {
+        width: calc(100% - 80px - 20px);
         h3 {
             margin: unset;
             font-size: 14px;

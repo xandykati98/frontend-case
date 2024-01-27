@@ -10,6 +10,7 @@ export default defineEventHandler((event):APIResponse<User> => {
             avatar: 'profile.png',
             verified: true,
             job: 'Advogada',
+            pronouns: 'ela/dela',
         }
     }
 })

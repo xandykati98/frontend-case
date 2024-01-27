@@ -9,7 +9,11 @@
                     <h1>
                         {{ store.user?.name }}
                     </h1>
-                    <h3>Bem-vinda de volta <nuxt-img src="waving-hand_light-skin-tone.png"/></h3>
+                    <h3 v-html="unifiedToHTML(
+                        store.user?.pronouns === 'neutro' ? 'Bem-vinde de volta 👋🏻' : 
+                        store.user?.pronouns === 'ela/dela' ? 'Bem-vinda de volta 👋🏻' :
+                        // default to ele/dele
+                        `Bem-vindo de volta 👋🏻`)"></h3>
                 </div>
             </div>
         </section>
@@ -32,6 +36,8 @@
 import { useNuxtApp } from '#app'
 import { useUserStore } from '../../stores/user'
 import { useLayoutStore } from '../../stores/layout'
+import { useEmoji } from '../../composables/emoji';
+const { unifiedToHTML } = useEmoji()
 
 const layout = useLayoutStore();
 const store = useUserStore()
@@ -111,11 +117,7 @@ header {
             color: $text-default;
             margin-bottom: 0px;
             margin-top: 0px;
-            & img {
-                width: 20px;
-                height: 20px;
-                margin: 0px 4px;
-            }
+            display: block;
         }
     }
 }

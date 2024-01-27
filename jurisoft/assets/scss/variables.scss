@@ -10,6 +10,7 @@ $text-light: #868C98;
 
 $disabled: #CDD0D5;
 $error: #DF1C41;
+$error-off: #AD1833;
 $verified: #35B9E9;
 $border: #E2E4E9;
 
@@ -21,3 +22,5 @@ $sidebar-width: 272px;
 $mini-sidebar-width: 80px;
 
 $button-radius: 10px;
+
+@import "./emoji"

@@ -1,7 +1,7 @@
 <template>
     <Card title="Rastreador de tempo" icon="rastreador">
         <template #title-inner>
-            <Button mini icon="historico">Histórico</Button>
+            <Button mini icon="historico" @click="toggleTracks">Histórico</Button>
         </template>
         <template #card-inner>
             <div class="timer">
@@ -21,29 +21,44 @@
                         </div>
                         <h1>{{ toTimeString(tracks[activeTrack].timeMs, true) }}<span>:{{ toTimeStringObject(tracks[activeTrack].timeMs).seconds }}</span></h1>
                     </section>
-                    <button :class="running ? 'running' : ''" @click="toggleRunning">
-                        <nuxt-icon :name="running ? 'pause' : 'play'"/>{{running ? 'Pausar' : 'Iniciar'}}
+                    <button @click="toggleRunning" v-if="!running">
+                        <nuxt-icon name="play"/>Iniciar
                     </Button>
+                    <div class="running" v-else>
+                        <button @click="toggleRunning" class="pause">
+                            <nuxt-icon name="pause"/>Pausar
+                        </button>
+                        <div class="divider"></div>
+                        <button @click="resetRunning" class="stop">
+                            <nuxt-icon name="stop"/>Parar
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="bottom-tracker">
-                <span>Tarefas Anteriores</span>
-                <ul class="select-track-list">
-                    <li :key="track.title" class="select-track" v-for="track in tracks.filter((_, i) => activeTrack !== i)">
-                        <section @click="activateTrack(track)">
-                            <div class="select-icon">
-                                <nuxt-icon :name="track.icon" filled/>
+                <div v-if="tracks.filter((_, i) => activeTrack !== i).length">
+                    <span class="title">Tarefas Anteriores</span>
+                    <ul class="select-track-list">
+                        <li :key="track.title" class="select-track" v-for="track in tracks.filter((_, i) => activeTrack !== i)">
+                            <section @click="activateTrack(track)">
+                                <div class="select-icon">
+                                    <nuxt-icon :name="track.icon" filled/>
+                                </div>
+                                <div>
+                                    <h1>{{ track.title }}</h1>
+                                    <h3>{{ toTimeString(track.timeMs) }}</h3>
+                                </div>
+                            </section>
+                            <div class="config">
+                                <nuxt-icon name="config"/>
                             </div>
-                            <div>
-                                <h1>{{ track.title }}</h1>
-                                <h3>{{ toTimeString(track.timeMs) }}</h3>
-                            </div>
-                        </section>
-                        <div class="config">
-                            <nuxt-icon name="config"/>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div v-else class="empty">
+                    <nuxt-icon name="atividades-vazio" filled/>
+                    <h3>Sem registro de atividades</h3>
+                </div>
             </div>
         </template>
     </Card>
@@ -68,12 +83,26 @@ function toggleRunning() {
     }, 1000);
     interval.value = cancel;
 }
+function toggleTracks() {
+    if (tracks.value.length === 1) {
+        tracks.value = defaultTracks;
+    } else {
+        tracks.value = [defaultTracks[0]];
+    }
+}
+function resetRunning() {
+    tracks.value[activeTrack.value].timeMs = 0;
+    if (running.value) {
+        toggleRunning();
+    }
+}
+
 type Track = {
     icon: string;
     title: string;
     timeMs: number;
 }
-const tracks = ref<Track[]>([
+const defaultTracks = [
     {
         icon: 'monday',
         title: 'Monday.com Onboarding',
@@ -92,7 +121,10 @@ const tracks = ref<Track[]>([
         //3:14:26
         timeMs: 11666000,
     }
-])
+]
+
+const tracks = ref<Track[]>(defaultTracks)
+
 function toTimeStringObject(timeMs: number) {
     const hours = Math.floor(timeMs / 3600000);
     const minutes = Math.floor((timeMs - hours * 3600000) / 60000);
@@ -169,6 +201,33 @@ function activateTrack(track: Track) {
                 }
             }
         }
+        
+        & .running {
+            display: flex;
+            gap: 16px;
+            position: relative;
+            align-items: center;
+            & .divider {
+                width: 1px;
+                height: 12px;
+                background: $border;
+            }
+            & .pause {
+                padding: 0px;
+                color: $text-highlight;
+                &:hover {
+                    color: $text-highlight-off;
+                }
+            }
+            & .stop {
+                padding: 0px;
+                color: $error;
+                &:hover {
+                    color: $error-off;
+                }
+            
+            }
+        }
         & button {
             color: $primary;
             background: unset;
@@ -182,15 +241,9 @@ function activateTrack(track: Track) {
             letter-spacing: -0.084px;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 7px;
             padding-top: 0px;
             padding-bottom: 0px;
-            &.running {
-                color: $text-default;
-                &:hover {
-                    color: $text-default;
-                }
-            }
             & .nuxt-icon {
                 width: 20px;
                 height: 20px;
@@ -199,7 +252,6 @@ function activateTrack(track: Track) {
             &:hover {
                 color: $primary-hover;
             }
-        
         }
     }
     & .timer-title {
@@ -246,7 +298,29 @@ function activateTrack(track: Track) {
 .bottom-tracker {
     width: 100%;
     margin-bottom: 4px;
-    & > span {
+    & .empty {
+        display: flex;
+        gap: 12px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 11px 0px;
+        & > .nuxt-icon {
+            display: flex;
+            width: 72px;
+            height: 72px;
+        }
+        & h3 {
+            margin: unset;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: -0.084px;
+            color: $text-default;
+        }
+    }
+    & .title {
         font-size: 11px;
         font-style: normal;
         font-weight: 500;
