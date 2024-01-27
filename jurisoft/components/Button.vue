@@ -1,8 +1,9 @@
 <template>
     <button :style="style || ''" :class="{
         'only-icon': onlyIcon,
-        mini: mini,
-        primary: primary,
+        mini,
+        primary,
+        disabled,
         'default': !primary
     }">
         <nuxt-icon :name="icon" v-if="icon" class="icon" />
@@ -16,7 +17,8 @@ defineProps({
     style: String,
     primary: Boolean,
     mini: Boolean,
-    onlyIcon: Boolean
+    onlyIcon: Boolean,
+    disabled: Boolean
 })
 </script>
 <style lang="scss" scoped>
@@ -47,6 +49,10 @@ button {
         &:hover {
             background: $highlight-bg;
         }
+    }
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.6
     }
     display: flex;
     align-items: center;

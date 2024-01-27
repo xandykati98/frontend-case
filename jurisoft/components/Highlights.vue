@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="comment-button">
-                            <Button mini icon="comment">Comment</Button>
+                            <Button icon="comment">Comment</Button>
                         </div>
                     </div>
                 </template>
