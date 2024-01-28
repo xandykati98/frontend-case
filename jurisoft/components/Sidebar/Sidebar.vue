@@ -42,20 +42,20 @@ defineProps({
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-	}
-    & .item {
-        width: fit-content;
-        & .link {
-            & .contents {
-                & .title {
+        & .item {
+            width: fit-content;
+            & .link {
+                & .contents {
+                    & .title {
+                        display: none;
+                    }
+                }
+                & .caret {
                     display: none;
                 }
             }
-            & .caret {
-                display: none;
-            }
         }
-    }
+	}
 }
 .list-title {
     text-transform: uppercase;
@@ -80,7 +80,6 @@ defineProps({
     & li.item {
         display: flex;
         width: 100%;
-        height: 100%;
         justify-content: space-between;
         & .contents {
             display: flex;

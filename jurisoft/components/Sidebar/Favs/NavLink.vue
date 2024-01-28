@@ -26,6 +26,13 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
+.minimized {
+    & .item {
+        & .command {
+            display: none;
+        }
+    }
+}
 .item {
     & .link.active:not(:hover) {
         background: $bg!important;
