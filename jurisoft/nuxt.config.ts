@@ -28,7 +28,10 @@ export default defineNuxtConfig({
 			meta: [
 				// description
 				{ hid: 'description', name: 'description', content: 'Jurisoft - Alexandre dos Santos Pereira' },
-			]
+			],
+			htmlAttrs: {
+			  lang: 'pt-BR'
+			}
 		},
 	}
 })

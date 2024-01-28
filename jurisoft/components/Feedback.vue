@@ -10,9 +10,9 @@
                     <h1>
                         Como você classificaria seu humor hoje?
                     </h1>
-                    <h3>
+                    <h2>
                         Compartilhe seu humor para nos ajudar a entender.
-                    </h3>
+                    </h2>
                 </section>
             </div>
             <div class="mood-selector">
@@ -185,7 +185,7 @@ function sendFeedback() {
         line-height: 24px;
         letter-spacing: -0.176px;
     }
-    & h3 {
+    & h2 {
         margin: unset;
         font-size: 12px;
         font-style: normal;

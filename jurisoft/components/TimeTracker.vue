@@ -46,7 +46,7 @@
                                 </div>
                                 <div>
                                     <h1>{{ track.title }}</h1>
-                                    <h3>{{ toTimeString(track.timeMs) }}</h3>
+                                    <h2>{{ toTimeString(track.timeMs) }}</h2>
                                 </div>
                             </section>
                             <div class="config">
@@ -364,7 +364,7 @@ function activateTrack(track: Track) {
                 cursor: pointer;
                 display: flex;
                 gap: 10px;
-                h1, h3 {
+                h1, h2 {
                     margin: unset;
                 }
                 h1 {
@@ -377,7 +377,7 @@ function activateTrack(track: Track) {
                     color: $text-highlight;
                     margin-bottom: 4px;
                 }
-                h3 {
+                h2 {
                     font-family: Inter;
                     font-size: 12px;
                     font-style: normal;

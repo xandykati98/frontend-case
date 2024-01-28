@@ -14,7 +14,7 @@
                 <template v-if="activeTab === null">
                     <div class="sem-destaque">
                         <nuxt-icon filled name="sem-destaque"/>
-                        <h3>Sem registros do destaque do funcionário ainda. Por favor, verifique mais tarde.</h3>
+                        <h2>Sem registros do destaque do funcionário ainda. Por favor, verifique mais tarde.</h2>
                     </div>
                 </template>
                 <template v-if="activeTab === 'Geral'">
@@ -22,9 +22,9 @@
                         <h1>
                             {{ tabsInfo[activeTab].user?.name }}
                         </h1>
-                        <h3>
+                        <h2>
                             {{ tabsInfo[activeTab].user?.job }}
-                        </h3>
+                        </h2>
                     </div>
                     <div class="content">
                         <div class="inner">
@@ -38,9 +38,9 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="destaque-description">
+                    <h2 class="destaque-description">
                         {{ tabsInfo[activeTab].description }}
-                    </h3>
+                    </h2>
                 </template>
                 <template v-if="activeTab === 'Comentários'">
                     <div class="comments">
@@ -51,7 +51,7 @@
                                         <nuxt-img :src="comment.user.avatar" alt="avatar"/>
                                     </div>
                                     <div class="text">
-                                        <h3>{{ comment.user.name }}</h3>
+                                        <h2>{{ comment.user.name }}</h2>
                                         <h1 class="message" v-html="`<span>${unifiedToHTML(comment.message)}</span>`"></h1>
                                     </div>
                                 </section>
@@ -73,9 +73,9 @@
                         <h1>
                             Cartão presente de R$ 50,00
                         </h1>
-                        <h3>
+                        <h2>
                             Aproveite o prêmio, {{ tabsInfo[activeTab].user?.name }}!
-                        </h3>
+                        </h2>
                     </div>
                     <div class="content">
                         <div class="inner">
@@ -89,9 +89,9 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="destaque-description">
+                    <h2 class="destaque-description">
                         Os funcionários do mês recebem recompensas
-                    </h3>
+                    </h2>
                 </template>
             </div>
         </template>
@@ -263,7 +263,7 @@ onMounted(() => {
             width: 108px;
             height: 108px;
         }
-        & h3 {
+        & h2 {
             margin: unset;
             font-size: 14px;
             font-style: normal;
@@ -302,7 +302,7 @@ onMounted(() => {
         width: 100%;
         text-align: center;
     }
-    & h3 {
+    & h2 {
         margin: unset;
         font-size: 12px;
         font-style: normal;
@@ -460,7 +460,7 @@ onMounted(() => {
             flex-direction: column;
             justify-content: flex-start;
             gap: 4px;
-            & h3 {
+            & h2 {
                 margin: unset;
                 font-size: 12px;
                 font-style: normal;
