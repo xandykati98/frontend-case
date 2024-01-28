@@ -1,5 +1,8 @@
 # Jurisoft - Desafio de Desenvolvimento Front-end
 
+## DEMO / Link: https://frontend-case-alexandre.vercel.app/dashboard
+
+
 ### Candidato: Alexandre dos Santos Pereira <br> Email: xandykati98@gmail.com
 ### Esta é versão foi escrita usando **TypeScript**
 ## Setup

@@ -1,3 +1,8 @@
+# LINK DO CASE COMPLETO: https://frontend-case-alexandre.vercel.app/dashboard
+
+### Candidato: Alexandre dos Santos Pereira <br> Email: xandykati98@gmail.com
+
+
 # Desafio de Desenvolvimento Front-end
 
 ## Visão Geral
