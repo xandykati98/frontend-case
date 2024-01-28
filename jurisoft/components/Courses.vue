@@ -258,7 +258,7 @@ table {
         & td, & th {
             padding: 0px;
             & .status-container {
-                @media (max-width: $mobileWide) {
+                @media (max-width: $tablet) {
                     width: 130px;
                 }
                 & .status {
