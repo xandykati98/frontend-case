@@ -2,7 +2,7 @@
     <Card title="Cursos" icon="livro">
         <template #title-inner>
             <div class="course-title">
-                <TextInput icon="busca" @input="changeInputValue" :value="inputValue" :placeholder="$viewport.isGreaterOrEquals('tablet') ? 'Pesquisar cursos...' : 'Pesquisar'"/>
+                <TextInput icon="busca" @input="changeInputValue" :value="inputValue" :placeholder="$viewport.isLessThan('desktop') ? 'Pesquisar' : 'Pesquisar cursos...'"/>
                 <Button mini @click="inputValue = ''">Ver todos</Button>
             </div>
         </template>
@@ -184,7 +184,7 @@ table {
     gap: 12px;
     flex-direction: row;
     & .input-container {
-        @media (max-width: $mobileWide) {
+        @media (max-width: $desktop ) {
             width: 115px;
         }
     }
