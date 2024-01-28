@@ -48,6 +48,7 @@ $tablet: 768px;
     }
 }
 @mixin h1($size: 14px, $weight: 500, $line-height: 20px, $spacing: -0.084px) {
+    font-feature-settings: 'ss11' on, 'cv09' on, 'liga' off, 'calt' off;
     color: $text-highlight;
     font-weight: $weight;
     font-size: $size;
@@ -57,6 +58,7 @@ $tablet: 768px;
 }
 
 @mixin h2($size: 12px, $weight: 400, $line-height: 16px, $spacing: -0.084px) {
+    font-feature-settings: 'ss11' on, 'cv09' on, 'liga' off, 'calt' off;
     color: $text-highlight;
     font-weight: $weight;
     font-size: $size;
