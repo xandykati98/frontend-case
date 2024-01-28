@@ -40,7 +40,6 @@ function emitInput(event : Event) {
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
-        letter-spacing: 0em;
         text-align: left;
         color: $text-default;
         letter-spacing: -0.084px;

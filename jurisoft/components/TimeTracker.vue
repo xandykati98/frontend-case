@@ -278,9 +278,7 @@ function activateTrack(track: Track) {
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flexCenter;
             cursor: pointer;
             & > .nuxt-icon {
                 width: 20px;

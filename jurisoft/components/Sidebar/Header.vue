@@ -101,9 +101,7 @@ defineProps({
         & .caret {
             width: 24px;
             height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flexCenter;
             align-self: center;
             cursor: pointer;
             transition: $sidebar-transition;

@@ -12,7 +12,7 @@
 
                 <div class="bar" v-for="(value, key) in report.tags" :key="key" :style="{ width: (value / report.total * 100) + '%', background: colors[key] }">
                     <div class="bar-text">
-                        <h3>{{ Math.floor(value / 1000 / 60 / 60) }}h {{ Math.floor(value / 1000 / 60) % 60 }}m</h3>
+                        <h2>{{ Math.floor(value / 1000 / 60 / 60) }}h {{ Math.floor(value / 1000 / 60) % 60 }}m</h2>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="tag" v-for="(value, key) in report.tags" :key="key">
                     <div class="tag-color" :style="{ background: colors[key] }"></div>
                     <div class="tag-text">
-                        <h3>{{ key }}</h3>
+                        <h2>{{ key }}</h2>
                     </div>
                 </div>
             </div>
@@ -140,12 +140,9 @@ $fetch('/api/time_report')
             box-sizing: content-box;
         }
         & .tag-text {
-            & h3 {
-                margin: unset;
-                font-size: 12px;
-                font-weight: 400;
+            & h2 {
+                @include h2($size: 12px, $spacing: 0px);
                 color: $text-default;
-                line-height: 16px;
             }
         }
     }
@@ -160,7 +157,7 @@ $fetch('/api/time_report')
         & .bar {
             height: 30px;
             & .bar-text {
-                & h3 {
+                & h2 {
                     opacity: 1;
                 }
             }
@@ -184,7 +181,7 @@ $fetch('/api/time_report')
             justify-content: center;
             align-items: center;
             display: flex;
-            & h3 {
+            & h2 {
                 font-size: 14px;
                 font-weight: 500;
                 color: #FFFFFF;

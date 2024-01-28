@@ -2,7 +2,7 @@
     <Card title="Cursos" icon="livro">
         <template #title-inner>
             <div class="course-title">
-                <TextInput icon="busca" @input="changeInputValue" :value="inputValue" :placeholder="$viewport.isLessThan('desktop') ? 'Pesquisar' : 'Pesquisar cursos...'"/>
+                <TextInput icon="busca" @input="changeInputValue" :value="inputValue" :placeholder="$viewport.isLessThan('desktop') ? $viewport.isLessThan('tablet') ? 'Busca' : 'Pesquisar' : 'Pesquisar cursos...'"/>
                 <Button mini @click="inputValue = ''">Ver todos</Button>
             </div>
         </template>
@@ -23,13 +23,13 @@
                             <th scope="row" class="professor">
                                 <nuxt-img :src="course.professor.avatar" :alt="course.professor.name"/>
                                 <section>
-                                    <h3>{{ course.professor.name }}</h3>
+                                    <h1>{{ course.professor.name }}</h1>
                                     <p>{{ course.professor.job }}</p>
                                 </section>
                             </th>
                             <td>
                                 <section class="name-section">
-                                    <h3>{{ course.name }}</h3>
+                                    <h1>{{ course.name }}</h1>
                                     <p>{{ getCourseDate(course.dateStart, course.dateEnd) }}</p>
                                 </section>
                             </td>
@@ -171,7 +171,7 @@ table {
                     color: $primary;
                 }
                 &.concluido .nuxt-icon {
-                    color: #14AB86;
+                    color: $success;
                 }
             }
         }
@@ -186,6 +186,21 @@ table {
     & .input-container {
         @media (max-width: $desktop ) {
             width: 115px;
+        }
+    }
+    @media (max-width: $mobile) {
+        gap: 0px;
+        & .input-container {
+            border-right: unset;
+            border-top-right-radius: unset;
+            border-bottom-right-radius: unset;
+        }
+        & button {
+            border-top-left-radius: unset;
+            border-bottom-left-radius: unset;
+        }
+        & .input-container {
+            width: 80px;
         }
     }
 }
@@ -276,7 +291,7 @@ table {
                         color: $primary;
                     }
                     & .concluido {
-                        color: #14AB86;
+                        color: $success;
                     }
                 }
             }
@@ -310,15 +325,9 @@ table {
                 justify-content: center;
                 align-items: flex-start;
                 gap: 4px;
-                & h3 {
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 20px;
-                    letter-spacing: 0em;
+                & h1 {
                     text-align: left;
-                    margin: unset;
-                    color: $text-highlight;
+                    @include h1($weight: 400, $spacing: 0px);
                 }
                 & p {
                     font-size: 12px;

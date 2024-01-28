@@ -11,6 +11,7 @@ $text-light: #868C98;
 
 $disabled: #CDD0D5;
 $error: #DF1C41;
+$success: #14AB86;
 $error-off: #AD1833;
 $verified: #35B9E9;
 $border: #E2E4E9;
@@ -28,7 +29,7 @@ $mini-shadow: 0px 2px 4px rgba(27, 28, 29, 0.04);
 
 $button-radius: 10px;
 
-// Default breakpoints. https://www.npmjs.com/package/nuxt-viewport
+// Default breakpoints: https://www.npmjs.com/package/nuxt-viewport
 $desktop: 1000px; // Default = 1024px
 $desktopMedium: 1280px;
 $desktopWide: 1600px;
@@ -65,5 +66,11 @@ $tablet: 768px;
     margin: unset;
     line-height: $line-height;
     letter-spacing: $spacing;
+}
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 @import "./emoji"

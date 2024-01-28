@@ -26,6 +26,10 @@ main {
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(6, 1fr);
+    @media (max-width: $mobileWide) {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
     & > * {
         grid-column: span 2;
         @media (max-width: 1200px) {

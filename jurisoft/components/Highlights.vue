@@ -224,9 +224,7 @@ onMounted(() => {
         & button {
             width: 100%;
             height: 36px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flexCenter;
             font-size: 14px;
             align-self: self-end;
             & .icon {
@@ -421,9 +419,7 @@ onMounted(() => {
         & .heart {
             width: 24px;
             height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flexCenter;
             cursor: pointer;
             & .icon {
                 width: 24px;

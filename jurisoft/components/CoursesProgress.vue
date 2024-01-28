@@ -7,15 +7,15 @@
             <div class="divider"></div>
             <div class="progress-container">
                 <div class="progress-circular" :style="{ background: `
-                    radial-gradient(closest-side, white 79%, transparent 80% 100%),
-                    conic-gradient(#FF4A00 ${progress}%, #E2E4E9 0)
+                    radial-gradient(closest-side, white 83%, transparent 80% 100%),
+                    conic-gradient(${progress === 100 ? '#14AB86' : '#FF4A00'} ${progress}%, #E2E4E9 0)
                 `}">
                     {{ progress.toFixed(0) }}%
                 </div>
-                <div class="progress-text">
-                    <h3>{{ progress > 0 ? 'Diversidade da equipe' : 'Nenhum curso em andamento'}}</h3>
+                <div :class="{ 'progress-text': true, complete: progress === 100 }">
+                    <h1>{{ progress > 0 ? 'Diversidade da equipe' : 'Nenhum curso em andamento'}}</h1>
                     <p>{{ progress > 0 ? 'Projetado para promover a inclusividade e perspectivas diversas.' : 'Não há progresso em nenhum curso ainda. Considere se inscrever em um.'}}</p>
-                    <nuxt-link to="#">{{ progress > 0 ? 'Retomar curso' : 'Inscrever-se'}}</nuxt-link>
+                    <nuxt-link to="#" @click="fullfillProgress">{{ progress === 100 ? 'Curso completo!' : progress > 0 ? 'Retomar curso' : 'Inscrever-se'}}</nuxt-link>
                 </div>
             </div>
         </template>
@@ -30,6 +30,9 @@ const progress = ref(0);
 
 function toggleProgress() {
     gsap.to(progress, { duration: 0.5, value: progress.value === 25 ? 0 : 25 })
+}
+function fullfillProgress() {
+    gsap.to(progress, { duration: 0.5, value: 100 })
 }
 onMounted(() => {
     $fetch('/api/course_progress')
@@ -46,7 +49,7 @@ onMounted(() => {
 .loading {
     & .progress-container {
         & .progress-text {
-            & h3 {
+            & h1 {
                 color: $text-default;
             }
         }
@@ -89,20 +92,18 @@ onMounted(() => {
     }    
     .progress-text {
         width: calc(100% - 80px - 20px);
-        h3 {
-            margin: unset;
-            font-size: 14px;
-            font-weight: 500;
-            color: $text-highlight;
-            line-height: 16px;
+        &.complete {
+            a {
+                color: $text-default;
+            }
+        }
+        h1 {
+            @include h1($line-height: 16px, $spacing: 0px);
             margin-bottom: 4px;
         }
         p {
-            margin: unset;
-            font-size: 12px;
-            font-weight: 400;
+            @include h2($size: 12px, $spacing: 0px);
             color: $text-default;
-            line-height: 16px;
             margin-bottom: 8px;
         }
         a {

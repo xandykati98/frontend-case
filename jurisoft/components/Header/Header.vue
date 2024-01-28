@@ -63,6 +63,10 @@ header {
     height: 88px;
     display: flex;
     justify-content: space-between;
+    @media (max-width: $mobileWide) {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
     & section {
         display: flex;
         align-items: center;
@@ -113,13 +117,10 @@ header {
             @include h1($size: 18px, $line-height: 24px, $spacing: -0.27px);
             color: $text-highlight;
             margin-bottom: 4px;
-            margin-top: 0px;
         }
         & h2 {
             display: flex;
             @include h2($size: 14px, $line-height: 20px);
-            margin-bottom: 0px;
-            margin-top: 0px;
             display: block;
         }
     }

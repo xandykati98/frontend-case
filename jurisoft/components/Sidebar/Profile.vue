@@ -139,9 +139,7 @@ const store = useUserStore()
             width: 20px;
             height: 20px;
             padding: 2px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flexCenter;
             align-self: center;
             cursor: pointer;
             box-sizing: content-box;
