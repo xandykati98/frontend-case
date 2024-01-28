@@ -49,7 +49,7 @@ const store = useUserStore()
                         & .verified-2 {
                             width: 28px;
                             height: 28px;
-                            filter: drop-shadow(0px 2px 4px rgba(27, 28, 29, 0.04));
+                            filter: drop-shadow($mini-shadow);
                             position: absolute;
                             top: 0px;
                             left: calc(100% - 12px - 5px);

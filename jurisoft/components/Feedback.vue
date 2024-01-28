@@ -146,7 +146,7 @@ function sendFeedback() {
     }
     & textarea {
         padding: 12px;
-        box-shadow: 0px 1px 2px 0px rgba(228, 229, 231, 0.24);
+        box-shadow: $default-shadow;
         border: unset;
         color: $text-highlight;
         outline: 0;

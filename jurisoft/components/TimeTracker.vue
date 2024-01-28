@@ -162,7 +162,7 @@ function activateTrack(track: Track) {
     border-radius: 10px;
     border: 1px solid $border;
     background: $bg;
-    box-shadow: 0px 1px 2px 0px rgba(228, 229, 231, 0.24);
+    box-shadow: $default-shadow;
     overflow: hidden;
     & .timer-inner {
         width: 100%;

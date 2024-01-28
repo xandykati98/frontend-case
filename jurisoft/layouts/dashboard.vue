@@ -47,7 +47,7 @@ const layout = useLayoutStore();
     height: 48px;
     background: $bg;
     border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(27, 28, 29, 0.04);
+    box-shadow: $mini-shadow;
     display: flex;
     justify-content: center;
     align-items: center;

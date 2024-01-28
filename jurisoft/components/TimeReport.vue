@@ -136,7 +136,7 @@ $fetch('/api/time_report')
             margin: 4px;
             transition: all 0.2s ease-in-out;
             border: 2px solid $bg;
-            box-shadow: 0px 2px 4px 0px #1B1C1D0A;
+            box-shadow: 0px 2px 4px 0px rgba(27, 28, 29, 0.039);
             box-sizing: content-box;
         }
         & .tag-text {

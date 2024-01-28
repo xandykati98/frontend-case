@@ -28,7 +28,7 @@ function emitInput(event : Event) {
     border-radius: 8px;
     background: $bg;
     border: 1px solid $border;
-    box-shadow: 0px 1px 2px 0px rgba(228, 229, 231, 0.24);
+    box-shadow: $default-shadow;
     padding: 6px 6px 6px 8px;
     & input {
         width: 100%;

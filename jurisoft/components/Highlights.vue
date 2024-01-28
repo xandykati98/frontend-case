@@ -280,15 +280,7 @@ onMounted(() => {
         height: 16px;
     }
     & .destaque-top.active, & .destaque-description, & .inner .avatar {
-        animation: fastOpacity 0.2s ease-in-out forwards;
-        @keyframes fastOpacity {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
+        animation: fadeIn 0.2s ease-in-out forwards;
     }
     & h1 {
         margin: unset;
