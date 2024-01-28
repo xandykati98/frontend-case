@@ -31,6 +31,8 @@ Inicie o servidor de desenvolvimento no port 3000: `http://localhost:3000`:
 pnpm run dev
 ```
 
+![Preview](image.png)
+
 ## Produção
 
 Criação de build para produção:
