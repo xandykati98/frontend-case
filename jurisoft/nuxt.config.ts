@@ -1,6 +1,7 @@
+import { resolve } from 'path';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	devtools: { enabled: true },
+	devtools: { enabled: false },
 	modules: [
 		'@nuxt/image',
 		'@pinia/nuxt',
@@ -15,9 +16,23 @@ export default defineNuxtConfig({
 				},
 			},
 		},
+		resolve: {
+			alias: {
+				'$emoji-png': resolve('./assets/emoji.png'),
+			}
+		}
 	},
 	image: {
-		dir: 'assets/images'
+		provider: 'defaultProvider',
+		providers: {
+			defaultProvider: {
+				name: 'defaultProvider', // optional value to overrider provider name
+				provider: '~/providers/default-provider.ts', // Path to custom provider
+				options: {
+					baseURL: "/images/"
+				}
+			}
+		}
 	},
 	app: {
 		head: {
@@ -30,7 +45,7 @@ export default defineNuxtConfig({
 				{ hid: 'description', name: 'description', content: 'Jurisoft - Alexandre dos Santos Pereira' },
 			],
 			htmlAttrs: {
-			  lang: 'pt-BR'
+			  	lang: 'pt-BR'
 			}
 		},
 	}
