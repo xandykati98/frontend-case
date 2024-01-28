@@ -25,15 +25,14 @@
                 <nuxt-icon name="notificacao"/>
                 <div class="notification-error"></div>
             </div>
-            <Button :only-icon="$viewport.isLessThan('tablet')" icon="calendario-alt">{{ $viewport.isGreaterOrEquals('tablet') ? 'Calendário' : '' }}</Button>
-            <Button :only-icon="$viewport.isLessThan('tablet')" icon="plus" primary>{{ $viewport.isGreaterOrEquals('tablet') ? 'Nova solicitação' : '' }}</Button>
+            <Button aria-label="Calendário" :only-icon="$viewport.isLessThan('tablet')" icon="calendario-alt">{{ $viewport.isGreaterOrEquals('tablet') ? 'Calendário' : '' }}</Button>
+            <Button aria-label="Nova solicitação" :only-icon="$viewport.isLessThan('tablet')" icon="plus" primary>{{ $viewport.isGreaterOrEquals('tablet') ? 'Nova solicitação' : '' }}</Button>
         </section>
     </header>
 </template>
 
 <script lang="ts" setup>
-// @ts-ignore
-import { useNuxtApp } from '#app'
+import { useNuxtApp } from 'nuxt/app'
 import { useUserStore } from '../../stores/user'
 import { useLayoutStore } from '../../stores/layout'
 import { useEmoji } from '../../composables/emoji';
@@ -49,17 +48,8 @@ header {
     & .container-avatar-intro {
         & .intro {
             & .emoji {
-                animation: fadeIn 0.5s ease-in-out forwards;
-                animation-delay: 0.2s;
+                animation: $emoji-fade-in;
                 opacity: 0;
-                @keyframes fadeIn {
-                    0% {
-                        opacity: 0;
-                    }
-                    100% {
-                        opacity: 1;
-                    }
-                }
             }
         }
     }

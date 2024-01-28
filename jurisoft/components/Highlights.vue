@@ -211,8 +211,15 @@ onMounted(() => {
 })
 </script>
 <style lang="scss">
-
 .container {
+    & .comment-container {
+        & .message {
+            & .emoji {
+                animation: unset;
+                opacity: 1;
+            }
+        }
+    }
     & .comment-button {
         & button {
             width: 100%;

@@ -10,7 +10,7 @@
                     <h3>Marketing Jurídico</h3>
                 </div>
             </div>
-            <div class="caret" @click="layout.minimize">
+            <div v-if="!mobileActive" class="caret" @click="caretClick">
                 <nuxt-icon name="caret-down" filled/>
             </div>
         </section>
@@ -24,6 +24,14 @@ const layout = useLayoutStore();
 const logoClick = () => {
     layout.maximize();
 }
+
+function caretClick() {
+    layout.minimize();
+}
+
+defineProps({
+    mobileActive: Boolean
+})
 </script>
 <style lang="scss" scoped>
 .minimized {

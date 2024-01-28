@@ -4,10 +4,20 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
+import { useNuxtApp } from 'nuxt/app';
 import { ref } from 'vue'
+import { useLayoutStore } from './stores/layout';
 import { useUserStore } from './stores/user'
-const loading = ref<boolean>(true)
+const { $viewport } = useNuxtApp();
+const layout = useLayoutStore();
+const loading = ref<boolean>(true);
 const userStore = useUserStore();
+
+// @ts-ignore
+if ($viewport.isLessThan('tablet')) {
+  layout.maximize();
+}
+
 userStore
 .loadUser()
 .then(() => {

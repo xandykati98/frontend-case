@@ -72,17 +72,8 @@ $fetch('/api/time_report')
 .to-text {
     & .time-emoji {
         & .emoji {
-            animation: fadeIn 0.5s ease-in-out forwards;
-            animation-delay: 0.2s;
+            animation: $emoji-fade-in;
             opacity: 0;
-            @keyframes fadeIn {
-                0% {
-                    opacity: 0;
-                }
-                100% {
-                    opacity: 1;
-                }
-            }
         }
     }
 }
@@ -213,16 +204,8 @@ $fetch('/api/time_report')
     height: 24px;
     & .time-emoji {
         & > span {
-            animation: fadeIn 0.1s ease-in-out forwards;
+            animation: $emoji-fade-in;
             opacity: 0;
-            @keyframes fadeIn {
-                0% {
-                    opacity: 0;
-                }
-                100% {
-                    opacity: 1;
-                }
-            }
         }
     }
     & h2 {

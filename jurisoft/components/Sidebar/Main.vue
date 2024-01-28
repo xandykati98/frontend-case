@@ -114,10 +114,6 @@ onMounted(() => {
     left: -20px;
     transition: top 0.2s ease-in-out;
 }
-.nav-group {
-    display: grid;
-    gap: 4px;
-}
 .minimized {
     & .list-title {
         text-align: center;

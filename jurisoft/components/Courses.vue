@@ -20,13 +20,13 @@
                     </thead>
                     <tbody>
                         <tr v-for="course in courses.filter(course => !inputValue ? true : course.professor.name.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase()))" :key="course.id">
-                            <td class="professor">
+                            <th scope="row" class="professor">
                                 <nuxt-img :src="course.professor.avatar" :alt="course.professor.name"/>
                                 <section>
                                     <h3>{{ course.professor.name }}</h3>
                                     <p>{{ course.professor.job }}</p>
                                 </section>
-                            </td>
+                            </th>
                             <td>
                                 <section class="name-section">
                                     <h3>{{ course.name }}</h3>
@@ -246,7 +246,7 @@ table {
     }
     tbody {
         border-bottom: 4px solid transparent;
-        & td {
+        & td, & th {
             padding: 0px;
             & .status {
                 display: flex;

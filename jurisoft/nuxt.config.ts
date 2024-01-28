@@ -23,6 +23,12 @@ export default defineNuxtConfig({
 		head: {
 			charset: 'utf-8',
 			viewport: 'width=device-width, initial-scale=1',
-		}
+			// title
+			title: 'Jurisoft',
+			meta: [
+				// description
+				{ hid: 'description', name: 'description', content: 'Jurisoft - Alexandre dos Santos Pereira' },
+			]
+		},
 	}
 })

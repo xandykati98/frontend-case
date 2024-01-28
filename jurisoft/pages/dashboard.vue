@@ -66,10 +66,3 @@ main {
     }
 }
 </style>
-<style lang="scss">
-main {
-    .card {
-        
-    }
-}
-</style>

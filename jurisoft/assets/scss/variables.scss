@@ -19,6 +19,7 @@ $highlight-bg: #F6F8FA;
 $bg: #FFFFFF;
 $sidebar-transition: all 0.2s ease-in-out;
 $sidebar-width-transition: all 0.2s linear;
+$emoji-fade-in: fadeIn 0.3s ease-in-out forwards 0.3s;
 $sidebar-width: 272px;
 $mini-sidebar-width: 80px;
 
@@ -34,5 +35,14 @@ $mobileMedium: 375px;
 $mobileWide: 425px;
 
 $tablet: 768px;
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 @import "./emoji"

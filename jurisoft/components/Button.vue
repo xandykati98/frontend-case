@@ -1,5 +1,5 @@
 <template>
-    <button :style="style || ''" :class="{
+    <button :aria-label="ariaLabel || ''" :style="style || ''" :class="{
         'only-icon': onlyIcon,
         mini,
         primary,
@@ -18,7 +18,8 @@ defineProps({
     primary: Boolean,
     mini: Boolean,
     onlyIcon: Boolean,
-    disabled: Boolean
+    disabled: Boolean,
+    ariaLabel: String
 })
 </script>
 <style lang="scss" scoped>

@@ -53,7 +53,7 @@ const loading = ref(false)
 function sendFeedback() {
     if (!mood.value) return alert('Selecione um humor')
     if (!textareaValue.value) return alert('Escreva uma mensagem')
-    
+
     loading.value = true;
     $fetch('/api/mood', {
         method: 'POST',
@@ -83,6 +83,11 @@ function sendFeedback() {
             color: $primary;
         }
     }
+}
+
+.emoji {
+    animation: $emoji-fade-in;
+    opacity: 0;
 }
 </style>
 <style lang="scss" scoped>
