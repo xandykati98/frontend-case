@@ -2,7 +2,7 @@
     <section>
         <div class="list-title">Main</div>
         <ul class="nav-group">
-            <div class="active-tracker" :style="`top: ${trackerTop}; left: ${activeLink === -1 ? -24 : layout.isMinimized ? -8 : -20}px`"></div>
+            <li class="active-tracker" :style="`top: ${trackerTop}; left: ${activeLink === -1 ? -24 : layout.isMinimized ? -8 : -20}px`"></li>
             <SidebarMainNavLink v-for="(item, index) in navLinks" :key="item.title" :title="item.title" :icon="item.icon" :to="item.to" @click="setActiveLink(index)" />
         </ul>
     </section>

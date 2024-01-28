@@ -9,11 +9,11 @@
                     <h1>
                         {{ store.user?.name }}
                     </h1>
-                    <h3 v-html="unifiedToHTML(
+                    <h2 v-html="unifiedToHTML(
                         store.user?.pronouns === 'neutro' ? 'Bem-vinde de volta 👋🏻' : 
                         store.user?.pronouns === 'ela/dela' ? 'Bem-vinda de volta 👋🏻' :
                         // default to ele/dele
-                        `Bem-vindo de volta 👋🏻`)"></h3>
+                        `Bem-vindo de volta 👋🏻`)"></h2>
                 </div>
             </div>
         </section>
@@ -118,7 +118,7 @@ header {
             margin-bottom: 4px;
             margin-top: 0px;
         }
-        & h3 {
+        & h2 {
             display: flex;
             font-family: Inter;
             font-size: 14px;
