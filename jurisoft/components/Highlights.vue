@@ -99,8 +99,8 @@
 </template>
 
 <script setup lang="ts">
-import { type ComponentPublicInstance, computed, ref, watch, onMounted } from "vue";
-import { type APIResponse, type Tab, type TabsInfo, type User } from "../server/crosstypes";
+import { type ComponentPublicInstance, computed, ref, onMounted } from "vue";
+import { type APIResponse, type Tab, type TabsInfo } from "../server/crosstypes";
 import { useEmoji } from '../composables/emoji';
 
 const { unifiedToHTML } = useEmoji()

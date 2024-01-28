@@ -1,4 +1,3 @@
-import { useAsyncData } from "nuxt/app"
 import { defineStore } from "pinia"
 
 export const useLayoutStore = defineStore('layout', {
