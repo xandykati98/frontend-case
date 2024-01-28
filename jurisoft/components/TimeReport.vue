@@ -209,12 +209,9 @@ $fetch('/api/time_report')
         }
     }
     & h2 {
-        margin: unset;
-        font-size: 16px;
-        font-weight: 400;
         display: flex;
         align-items: center;
-        letter-spacing: 0px;
+        @include h2($size: 16px, $line-height: inherit, $spacing: 0px);
         gap: 4px;
         & b {
             font-weight: 500;

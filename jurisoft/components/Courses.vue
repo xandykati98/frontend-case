@@ -203,8 +203,7 @@ table {
         padding: 16px;
         gap: 20px;
         & h2 {
-            @include h2;
-            letter-spacing: 0em;
+            @include h2($size: 14px, $line-height: 20px);
             text-align: center;
             margin: unset;
             color: $text-default;

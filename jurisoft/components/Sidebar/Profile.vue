@@ -133,11 +133,7 @@ const store = useUserStore()
             }
         }
         & .intro h2 {
-            color: $text-default;
-            font-weight: 400;
-            font-size: 12px;
-            margin: unset;
-            line-height: 16px;
+            @include h2($spacing: 0px);
         }
         & .caret {
             width: 20px;

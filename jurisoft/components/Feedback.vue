@@ -181,11 +181,7 @@ function sendFeedback() {
         @include h1($size: 16px, $line-height: 24px, $spacing: -0.176px);
     }
     & h2 {
-        margin: unset;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 16px;
+        @include h2($spacing: 0px);
         color: $text-default;
     }
 }

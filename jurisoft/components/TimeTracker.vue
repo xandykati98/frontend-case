@@ -306,10 +306,7 @@ function activateTrack(track: Track) {
             height: 72px;
         }
         & h2 {
-            @include h2;
-            line-height: 20px;
-            letter-spacing: -0.084px;
-            color: $text-default;
+            @include h2($line-height: 20px);
         }
     }
     & .title {
@@ -365,12 +362,7 @@ function activateTrack(track: Track) {
                     margin-bottom: 4px;
                 }
                 h2 {
-                    font-family: Inter;
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 16px;
-                    color: $text-default;
+                    @include h2;
                 }
             }
             & .select-icon {

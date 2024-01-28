@@ -117,12 +117,7 @@ header {
         }
         & h2 {
             display: flex;
-            font-family: Inter;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 20px;
-            letter-spacing: -0.084px;
-            color: $text-default;
+            @include h2($size: 14px, $line-height: 20px);
             margin-bottom: 0px;
             margin-top: 0px;
             display: block;

@@ -264,10 +264,7 @@ onMounted(() => {
             height: 108px;
         }
         & h2 {
-            @include h2;
-            line-height: 20px;
-            letter-spacing: -0.084px;
-            color: $text-default;
+            @include h2($line-height: 20px);
             width: 100%;
             text-align: center;
             padding: 0 32px;
@@ -287,14 +284,8 @@ onMounted(() => {
         text-align: center;
     }
     & h2 {
-        margin: unset;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 20px;
+        @include h2($line-height: 20px);
         height: 20px;
-        letter-spacing: -0.084px;
-        color: $text-default;
         width: 100%;
         text-align: center;
     }
@@ -445,13 +436,8 @@ onMounted(() => {
             justify-content: flex-start;
             gap: 4px;
             & h2 {
-                margin: unset;
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 16px;
+                @include h2;
                 height: 16px;
-                color: $text-default;
                 width: fit-content;
             }
             & .message {
