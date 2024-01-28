@@ -6,8 +6,14 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@pinia/nuxt',
 		'nuxt-icons',
-		'nuxt-viewport'
+		'nuxt-viewport',
+		'@nuxtjs/google-fonts'
 	],
+	googleFonts: {
+		families: {
+			Inter: [400, 500],
+		}
+	},
 	vite: {
 		css: {
 			preprocessorOptions: {
