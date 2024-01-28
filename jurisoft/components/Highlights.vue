@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="tabs-container">
                     <div class="tab-tracker" :style="{ left: tabTrackerLeft, width: tabTrackerWidth}"></div>
-                    <div @click="activateTab(tabName)" :ref="(el) => setTabRef(el, tabName)" :class="`tab ${activeTab === tabName ? 'active' : ''}`" :key="tabName" v-for="(_, tabName) in tabsRefs">
+                    <div @click="activateTab(tabName)" :ref="(el) => setTabRef(el, tabName)" :class="{ tab: true, active: activeTab === tabName }" :key="tabName" v-for="(_, tabName) in tabsRefs">
                         {{ tabName }}
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     </div>
                 </template>
                 <template v-if="activeTab === 'Geral'">
-                    <div :class="{'destaque-top':true, active: !!tabsInfo[activeTab].user }">
+                    <div :class="{ 'destaque-top': true, active: !!tabsInfo[activeTab].user }">
                         <h1>
                             {{ tabsInfo[activeTab].user?.name }}
                         </h1>

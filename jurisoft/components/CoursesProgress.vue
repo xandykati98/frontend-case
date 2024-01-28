@@ -6,7 +6,7 @@
         <template #card-inner>
             <div class="divider"></div>
             <div class="progress-container">
-                <div :class="'progress-circular'" :style="{ background: `
+                <div class="progress-circular" :style="{ background: `
                     radial-gradient(closest-side, white 79%, transparent 80% 100%),
                     conic-gradient(#FF4A00 ${progress}%, #E2E4E9 0)
                 `}">

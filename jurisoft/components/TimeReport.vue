@@ -8,7 +8,7 @@
             <div class="to-text">
                 <h2><b>{{ totalHours }}</b> horas <b>{{ totalMinutes }}</b> minutos no total <span class="time-emoji" v-html="unifiedToHTML('⏳')"></span></h2>
             </div>
-            <div :class="'bars-container ' + (details ? 'detailed' : '')">
+            <div :class="{ 'bars-container': true, detailed: details }">
 
                 <div class="bar" v-for="(value, key) in report.tags" :key="key" :style="{ width: (value / report.total * 100) + '%', background: colors[key] }">
                     <div class="bar-text">

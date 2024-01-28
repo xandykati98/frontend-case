@@ -2,7 +2,7 @@
     <Card title="Cursos" icon="livro">
         <template #title-inner>
             <div class="course-title">
-                <TextInput icon="busca" @input="changeInputValue" :value="inputValue" placeholder="Pesquisar cursos..."/>
+                <TextInput icon="busca" @input="changeInputValue" :value="inputValue" :placeholder="$viewport.isGreaterOrEquals('tablet') ? 'Pesquisar cursos...' : 'Pesquisar'"/>
                 <Button mini @click="inputValue = ''">Ver todos</Button>
             </div>
         </template>
@@ -44,14 +44,16 @@
                                 </section>    
                             </td>
                             <td>
-                                <div :class="{
-                                    'status': true,
-                                    'concluido': course.status === 'Concluído',
-                                    'em-andamento': course.status === 'Em andamento'
-                                }">
-                                    <nuxt-icon :name="course.status === 'Concluído' ? 'concluido' : 'em-andamento' "/>
-                                    {{ course.status }}
-                                </div>    
+                                <div class="status-container">
+                                    <div :class="{
+                                        'status': true,
+                                        'concluido': course.status === 'Concluído',
+                                        'em-andamento': course.status === 'Em andamento'
+                                    }">
+                                        <nuxt-icon :name="course.status === 'Concluído' ? 'concluido' : 'em-andamento' "/>
+                                        {{ course.status }}
+                                    </div>    
+                                </div>
                             </td>
                             <td>
                                 <div class="action">
@@ -74,11 +76,14 @@
 import { computed, onMounted, ref } from "vue";
 import { type APIResponse, type Course } from "../server/crosstypes";
 import type { SerializeObject } from 'nitropack';
+import { useNuxtApp } from "nuxt/app";
 const inputValue = ref('');
 const courses = ref<SerializeObject<Course>[]>([]);
+const { $viewport } = useNuxtApp()
 const isEmpty = computed(() => {
     return courses.value.filter(course => !inputValue ? true : course.professor.name.toLocaleLowerCase().includes(inputValue.value.toLocaleLowerCase())).length === 0
 })
+
 function changeInputValue(e: Event) {
     const target = e.target as HTMLInputElement;
     inputValue.value = target.value;
@@ -110,7 +115,6 @@ onMounted(() => {
         console.error(err);
     })
 })
-
 </script>
 <style lang="scss">
 .table-container {
@@ -119,7 +123,7 @@ onMounted(() => {
     
     /* custom scrollbar */
     &::-webkit-scrollbar {
-        width: 3px;
+        height: 3px;
     }
 
     &::-webkit-scrollbar-track {
@@ -179,6 +183,11 @@ table {
     display: flex;
     gap: 12px;
     flex-direction: row;
+    & .input-container {
+        @media (max-width: $mobileWide) {
+            width: 115px;
+        }
+    }
 }
 
 .table-container {
@@ -248,26 +257,31 @@ table {
         border-bottom: 4px solid transparent;
         & td, & th {
             padding: 0px;
-            & .status {
-                display: flex;
-                padding: 4px 8px 4px 4px;
-                justify-content: center;
-                align-items: center;
-                gap: 4px;
-                border-radius: 6px;
-                border: 1px solid $border;
-                height: 24px;
-                width: fit-content;
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 16px; 
-                color: $text-default;
-                & .em-andamento {
-                    color: $primary;
+            & .status-container {
+                @media (max-width: $mobileWide) {
+                    width: 130px;
                 }
-                & .concluido {
-                    color: #14AB86;
+                & .status {
+                    display: flex;
+                    padding: 4px 8px 4px 4px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 4px;
+                    border-radius: 6px;
+                    border: 1px solid $border;
+                    height: 24px;
+                    width: fit-content;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 16px; 
+                    color: $text-default;
+                    & .em-andamento {
+                        color: $primary;
+                    }
+                    & .concluido {
+                        color: #14AB86;
+                    }
                 }
             }
             & .name-section {
