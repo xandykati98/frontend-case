@@ -110,10 +110,7 @@ header {
     }
     & .intro {
         & h1 {
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 24px;
-            letter-spacing: -0.27px;
+            @include h1($size: 18px, $line-height: 24px, $spacing: -0.27px);
             color: $text-highlight;
             margin-bottom: 4px;
             margin-top: 0px;

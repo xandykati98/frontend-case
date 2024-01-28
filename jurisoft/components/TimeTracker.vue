@@ -57,7 +57,7 @@
                 </div>
                 <div v-else class="empty">
                     <nuxt-icon name="atividades-vazio" filled/>
-                    <h3>Sem registro de atividades</h3>
+                    <h2>Sem registro de atividades</h2>
                 </div>
             </div>
         </template>
@@ -189,13 +189,8 @@ function activateTrack(track: Track) {
                 text-align: center;
             }
             & h1 {
-                font-size: 40px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 48px;
+                @include h1($size: 40px, $line-height: 48px, $spacing: -0.4px);
                 height: 48px;
-                letter-spacing: -0.4px;
-                margin: unset;
                 & span {
                     color: $text-default;
                 }
@@ -310,11 +305,8 @@ function activateTrack(track: Track) {
             width: 72px;
             height: 72px;
         }
-        & h3 {
-            margin: unset;
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
+        & h2 {
+            @include h2;
             line-height: 20px;
             letter-spacing: -0.084px;
             color: $text-default;
@@ -368,12 +360,7 @@ function activateTrack(track: Track) {
                     margin: unset;
                 }
                 h1 {
-                    font-family: Inter;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 20px;
-                    letter-spacing: -0.084px;
+                    @include h1($weight: 400);
                     color: $text-highlight;
                     margin-bottom: 4px;
                 }

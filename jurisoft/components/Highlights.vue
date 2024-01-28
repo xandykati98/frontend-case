@@ -264,10 +264,7 @@ onMounted(() => {
             height: 108px;
         }
         & h2 {
-            margin: unset;
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
+            @include h2;
             line-height: 20px;
             letter-spacing: -0.084px;
             color: $text-default;
@@ -283,13 +280,8 @@ onMounted(() => {
         animation: fadeIn 0.2s ease-in-out forwards;
     }
     & h1 {
-        margin: unset;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px;
+        @include h1($size: 18px, $line-height: 24px, $spacing: -0.27px);
         height: 24px;
-        letter-spacing: -0.27px;
         margin-bottom: 6px;
         width: 100%;
         text-align: center;
@@ -463,12 +455,7 @@ onMounted(() => {
                 width: fit-content;
             }
             & .message {
-                margin: unset;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 20px;
-                letter-spacing: -0.084px;
+                @include h1($weight: 400);
                 color: $text-highlight;
                 width: 100%;
                 text-align: left;

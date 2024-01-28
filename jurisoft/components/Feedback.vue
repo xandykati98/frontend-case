@@ -178,12 +178,7 @@ function sendFeedback() {
         border-radius: 50%;
     }
     & h1 {
-        margin: unset;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px;
-        letter-spacing: -0.176px;
+        @include h1($size: 16px, $line-height: 24px, $spacing: -0.176px);
     }
     & h2 {
         margin: unset;

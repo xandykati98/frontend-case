@@ -92,13 +92,8 @@ defineProps({
             transition: $sidebar-transition;
         }
         & .intro h1 {
-            color: $text-highlight;
-            font-weight: 500;
-            font-size: 14px;
-            margin: unset;
+            @include h1;
             margin-bottom: 4px;
-            line-height: 20px; /* 142.857% */
-            letter-spacing: -0.084px;
         }
         & .intro h2 {
             color: $text-default;

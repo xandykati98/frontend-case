@@ -65,7 +65,7 @@
                 </table>
                 <div class="empty" v-if="isEmpty">
                     <nuxt-icon name="courses-empty" filled/>
-                    <p>Não há registros de cursos ainda. <br/>Por favor, verifique mais tarde.</p>
+                    <h2>Não há registros de cursos ainda. <br/>Por favor, verifique mais tarde.</h2>
                 </div>
             </div>
         </template>
@@ -202,11 +202,8 @@ table {
         height: calc(248px - 4px);
         padding: 16px;
         gap: 20px;
-        & p {
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 20px;
+        & h2 {
+            @include h2;
             letter-spacing: 0em;
             text-align: center;
             margin: unset;

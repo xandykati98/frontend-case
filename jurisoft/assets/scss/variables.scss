@@ -47,5 +47,19 @@ $tablet: 768px;
         opacity: 1;
     }
 }
-
+@mixin h2 {
+    margin: unset;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+@mixin h1($size: 14px, $weight: 500, $line-height: 20px, $spacing: -0.084px) {
+    color: $text-highlight;
+    font-weight: $weight;
+    font-size: $size;
+    margin: unset;
+    line-height: $line-height;
+    letter-spacing: $spacing;
+}
 @import "./emoji"
