@@ -11,7 +11,7 @@
                         <h1>
                             {{ store.user?.name }} <nuxt-icon class="verified" filled name="verified"/>
                         </h1>
-                        <h3>{{ store.user?.email }}</h3>
+                        <h2>{{ store.user?.email }}</h2>
                     </div>
                 </div>
                 <div class="caret">
@@ -137,7 +137,7 @@ const store = useUserStore()
                 height: 20px;
             }
         }
-        & .intro h3 {
+        & .intro h2 {
             color: $text-default;
             font-weight: 400;
             font-size: 12px;

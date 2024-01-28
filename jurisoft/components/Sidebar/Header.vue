@@ -7,7 +7,7 @@
                 </div>
                 <div class="intro">
                     <h1>Jurisoft</h1>
-                    <h3>Marketing Jurídico</h3>
+                    <h2>Marketing Jurídico</h2>
                 </div>
             </div>
             <div v-if="!mobileActive" class="caret" @click="caretClick">
@@ -100,7 +100,7 @@ defineProps({
             line-height: 20px; /* 142.857% */
             letter-spacing: -0.084px;
         }
-        & .intro h3 {
+        & .intro h2 {
             color: $text-default;
             font-weight: 400;
             font-size: 12px;
