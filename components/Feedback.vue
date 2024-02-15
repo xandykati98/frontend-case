@@ -7,10 +7,10 @@
                     <nuxt-icon name="smile"/>
                 </div>
                 <section>
-                    <h1>
+                    <span class="title">
                         Como você classificaria seu humor hoje?
-                    </h1>
-                    <h2>
+                    </span>
+                    <h2 class="subtitle">
                         Compartilhe seu humor para nos ajudar a entender.
                     </h2>
                 </section>
@@ -42,8 +42,6 @@
     </Card>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
-import { useEmoji } from "../composables/emoji";
 const { unifiedToHTML } = useEmoji()
 
 const textareaValue = ref('')
@@ -74,7 +72,7 @@ function sendFeedback() {
     })
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .feedback-top {
     & .smile {
         & .nuxt-icon {
@@ -84,13 +82,10 @@ function sendFeedback() {
         }
     }
 }
-
 .emoji {
     animation: $emoji-fade-in;
     opacity: 0;
 }
-</style>
-<style lang="scss" scoped>
 .divider {
     width: 100%;
     position: relative;
@@ -177,11 +172,11 @@ function sendFeedback() {
         background: $primary-lighter;
         border-radius: 50%;
     }
-    & h1 {
-        @include h1($size: 16px, $line-height: 24px, $spacing: -0.176px);
+    & .title {
+        @include title($size: 16px, $line-height: 24px, $spacing: -0.176px);
     }
-    & h2 {
-        @include h2($spacing: 0px);
+    & .subtitle {
+        @include subtitle($spacing: 0px);
         color: $text-default;
     }
 }

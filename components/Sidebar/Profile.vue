@@ -8,10 +8,10 @@
                         <nuxt-icon class="verified-2" v-if="layout.isMinimized" filled name="verified2"/>
                     </div>
                     <div class="intro">
-                        <h1>
+                        <span class="title">
                             {{ store.user?.name }} <nuxt-icon class="verified" filled name="verified"/>
-                        </h1>
-                        <h2>{{ store.user?.email }}</h2>
+                        </span>
+                        <h2 class="subtitle">{{ store.user?.email }}</h2>
                     </div>
                 </div>
                 <div class="caret">
@@ -23,8 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '../../stores/user'
-import { useLayoutStore } from '../../stores/layout';
 const layout = useLayoutStore();
 const store = useUserStore()
 </script>
@@ -121,8 +119,7 @@ const store = useUserStore()
             height: 100%;
             flex-direction: column;
         }
-        & .intro h1 {
-            @include h1;
+        & .intro .title {
             margin-bottom: 4px;
             display: flex;
             align-items: center;
@@ -132,8 +129,8 @@ const store = useUserStore()
                 height: 20px;
             }
         }
-        & .intro h2 {
-            @include h2($spacing: 0px);
+        & .intro .subtitle {
+            @include subtitle($spacing: 0px);
         }
         & .caret {
             width: 20px;

@@ -23,13 +23,13 @@
                             <th scope="row" class="professor">
                                 <nuxt-img :src="course.professor.avatar" :alt="course.professor.name"/>
                                 <section>
-                                    <h1>{{ course.professor.name }}</h1>
+                                    <span class="title">{{ course.professor.name }}</span>
                                     <p>{{ course.professor.job }}</p>
                                 </section>
                             </th>
                             <td>
                                 <section class="name-section">
-                                    <h1>{{ course.name }}</h1>
+                                    <span class="title">{{ course.name }}</span>
                                     <p>{{ getCourseDate(course.dateStart, course.dateEnd) }}</p>
                                 </section>
                             </td>
@@ -73,10 +73,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
 import { type APIResponse, type Course } from "../server/crosstypes";
 import type { SerializeObject } from 'nitropack';
-import { useNuxtApp } from "nuxt/app";
 const inputValue = ref('');
 const courses = ref<SerializeObject<Course>[]>([]);
 const { $viewport } = useNuxtApp()
@@ -116,68 +114,6 @@ onMounted(() => {
     })
 })
 </script>
-<style lang="scss">
-.table-container {
-    overflow-x: auto;
-    width: 100%;
-    
-    /* custom scrollbar */
-    &::-webkit-scrollbar {
-        height: 3px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background-color: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #d6dee1;
-        border-radius: 20px;
-        margin: 1px;
-        width: 3px;
-        background-clip: content-box;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background-color: #a8bbbf;
-    }
-}
-table {
-    tbody {
-        & td {
-            & .action {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 8px;
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                cursor: pointer;
-                & .nuxt-icon {
-                    color: $text-default;
-                }
-                &:hover {
-                    background: $highlight-bg;
-                }
-            }
-            & .status {
-                & .nuxt-icon {
-                    width: 12px;
-                    height: 12px;
-                    display: flex;
-                }
-                &.em-andamento .nuxt-icon {
-                    color: $primary;
-                }
-                &.concluido .nuxt-icon {
-                    color: $success;
-                }
-            }
-        }
-    }
-}
-</style>
 <style lang="scss" scoped>
 .course-title {
     display: flex;
@@ -209,6 +145,29 @@ table {
     display: flex;
     gap: 16px;
     flex-direction: column;
+    overflow-x: auto;
+    width: 100%;
+    
+    &::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #d6dee1;
+        border-radius: 20px;
+        margin: 1px;
+        width: 3px;
+        background-clip: content-box;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #a8bbbf;
+    }
+
     & > .empty {
         display: flex;
         flex-direction: column;
@@ -218,7 +177,7 @@ table {
         padding: 16px;
         gap: 20px;
         & h2 {
-            @include h2($size: 14px, $line-height: 20px);
+            @include subtitle($size: 14px, $line-height: 20px);
             text-align: center;
             margin: unset;
             color: $text-default;
@@ -266,6 +225,37 @@ table {
     }
     tbody {
         border-bottom: 4px solid transparent;
+        & td {
+            & .action {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                cursor: pointer;
+                & .nuxt-icon {
+                    color: $text-default;
+                }
+                &:hover {
+                    background: $highlight-bg;
+                }
+            }
+            & .status {
+                & .nuxt-icon {
+                    width: 12px;
+                    height: 12px;
+                    display: flex;
+                }
+                &.em-andamento .nuxt-icon {
+                    color: $primary;
+                }
+                &.concluido .nuxt-icon {
+                    color: $success;
+                }
+            }
+        }
         & td, & th {
             padding: 0px;
             & .status-container {
@@ -325,9 +315,9 @@ table {
                 justify-content: center;
                 align-items: flex-start;
                 gap: 4px;
-                & h1 {
+                & .title {
                     text-align: left;
-                    @include h1($weight: 400, $spacing: 0px);
+                    @include title($weight: 400, $spacing: 0px);
                 }
                 & p {
                     font-size: 12px;

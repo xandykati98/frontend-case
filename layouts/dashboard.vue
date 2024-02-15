@@ -16,9 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import { useNuxtApp } from 'nuxt/app';
-import { ref } from 'vue';
-import { useLayoutStore } from '../stores/layout'
 const { $viewport } = useNuxtApp();
 const mobileActive = ref(false);
 
@@ -27,15 +24,6 @@ function toggleMobileActive() {
 }
 const layout = useLayoutStore();
 </script>
-<style lang="scss">
-.toggle-mobile-active {
-    & .nuxt-icon {
-        width: 24px;
-        height: 24px;
-        color: $bg;
-    }
-}
-</style>
 <style lang="scss" scoped>
 .toggle-mobile-active {
     display: none;
@@ -56,6 +44,11 @@ const layout = useLayoutStore();
     animation-delay: 1s;
     background: $primary;
     transform: scale(0);
+    & .nuxt-icon {
+        width: 24px;
+        height: 24px;
+        color: $bg;
+    }
     &.mobileActive {
         background: $primary-hover;
     }

@@ -14,15 +14,15 @@
                 <template v-if="activeTab === null">
                     <div class="sem-destaque">
                         <nuxt-icon filled name="sem-destaque"/>
-                        <h2>Sem registros do destaque do funcionário ainda. Por favor, verifique mais tarde.</h2>
+                        <h2 class="subtitle">Sem registros do destaque do funcionário ainda. Por favor, verifique mais tarde.</h2>
                     </div>
                 </template>
                 <template v-if="activeTab === 'Geral'">
                     <div :class="{ 'destaque-top': true, active: !!tabsInfo[activeTab].user }">
-                        <h1>
+                        <span class="title">
                             {{ tabsInfo[activeTab].user?.name }}
-                        </h1>
-                        <h2>
+                        </span>
+                        <h2 class="subtitle">
                             {{ tabsInfo[activeTab].user?.job }}
                         </h2>
                     </div>
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <h2 class="destaque-description">
+                    <h2 class="destaque-description subtitle">
                         {{ tabsInfo[activeTab].description }}
                     </h2>
                 </template>
@@ -51,8 +51,8 @@
                                         <nuxt-img :src="comment.user.avatar" alt="avatar"/>
                                     </div>
                                     <div class="text">
-                                        <h2>{{ comment.user.name }}</h2>
-                                        <h1 class="message" v-html="`<span>${unifiedToHTML(comment.message)}</span>`"></h1>
+                                        <h2 class="subtitle">{{ comment.user.name }}</h2>
+                                        <span class="message" v-html="`<span>${unifiedToHTML(comment.message)}</span>`"></span>
                                     </div>
                                 </section>
                                 <div class="heart" @click="comment.liked = !comment.liked">
@@ -70,10 +70,10 @@
                 </template>
                 <template v-if="activeTab === 'Prêmios'">
                     <div class="destaque-top">
-                        <h1>
+                        <span class="title">
                             Cartão presente de R$ 50,00
-                        </h1>
-                        <h2>
+                        </span>
+                        <h2 class="subtitle">
                             Aproveite o prêmio, {{ tabsInfo[activeTab].user?.name }}!
                         </h2>
                     </div>
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                     </div>
-                    <h2 class="destaque-description">
+                    <h2 class="destaque-description subtitle">
                         Os funcionários do mês recebem recompensas
                     </h2>
                 </template>
@@ -99,9 +99,7 @@
 </template>
 
 <script setup lang="ts">
-import { type ComponentPublicInstance, computed, ref, onMounted } from "vue";
 import { type APIResponse, type Tab, type TabsInfo } from "../server/crosstypes";
-import { useEmoji } from '../composables/emoji';
 
 const { unifiedToHTML } = useEmoji()
 const activeTab = ref<string | null>('Geral');
@@ -210,8 +208,14 @@ onMounted(() => {
     })
 })
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+    justify-content: space-between;
     & .comment-container {
         & .message {
             & .emoji {
@@ -235,17 +239,6 @@ onMounted(() => {
             }
         }
     }
-}
-</style>
-<style lang="scss" scoped>
-.container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 16px;
-    justify-content: space-between;
-
     & .comments {
         display: grid;
         gap: 16px;
@@ -261,8 +254,8 @@ onMounted(() => {
             width: 108px;
             height: 108px;
         }
-        & h2 {
-            @include h2($line-height: 20px);
+        & .subtitle {
+            @include subtitle($line-height: 20px);
             width: 100%;
             text-align: center;
             padding: 0 32px;
@@ -274,15 +267,16 @@ onMounted(() => {
     & .destaque-top.active, & .destaque-description, & .inner .avatar {
         animation: fadeIn 0.2s ease-in-out forwards;
     }
-    & h1 {
-        @include h1($size: 18px, $line-height: 24px, $spacing: -0.27px);
+    & .title {
+        @include title($size: 18px, $line-height: 24px, $spacing: -0.27px);
         height: 24px;
         margin-bottom: 6px;
         width: 100%;
         text-align: center;
+        display: block;
     }
-    & h2 {
-        @include h2($line-height: 20px);
+    & .subtitle {
+        @include subtitle($line-height: 20px);
         height: 20px;
         width: 100%;
         text-align: center;
@@ -431,13 +425,12 @@ onMounted(() => {
             flex-direction: column;
             justify-content: flex-start;
             gap: 4px;
-            & h2 {
-                @include h2;
+            & .subtitle {
                 height: 16px;
                 width: fit-content;
             }
             & .message {
-                @include h1($weight: 400);
+                @include title($weight: 400);
                 color: $text-highlight;
                 width: 100%;
                 text-align: left;

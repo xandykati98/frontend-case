@@ -38,7 +38,6 @@ defineProps({
         background: $bg!important;
     }
     & .contents {
-        gap: 8px;
         & .ball {
             width: 8px;
             height: 8px;

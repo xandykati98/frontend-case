@@ -13,7 +13,7 @@
                     {{ progress.toFixed(0) }}%
                 </div>
                 <div :class="{ 'progress-text': true, complete: progress === 100 }">
-                    <h1>{{ progress > 0 ? 'Diversidade da equipe' : 'Nenhum curso em andamento'}}</h1>
+                    <span class="title">{{ progress > 0 ? 'Diversidade da equipe' : 'Nenhum curso em andamento'}}</span>
                     <p>{{ progress > 0 ? 'Projetado para promover a inclusividade e perspectivas diversas.' : 'Não há progresso em nenhum curso ainda. Considere se inscrever em um.'}}</p>
                     <nuxt-link to="#" @click="fullfillProgress">{{ progress === 100 ? 'Curso completo!' : progress > 0 ? 'Retomar curso' : 'Inscrever-se'}}</nuxt-link>
                 </div>
@@ -22,7 +22,6 @@
     </Card>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
 import { type APIResponse } from "../server/crosstypes";
 import gsap from 'gsap';
 
@@ -49,7 +48,7 @@ onMounted(() => {
 .loading {
     & .progress-container {
         & .progress-text {
-            & h1 {
+            & .title {
                 color: $text-default;
             }
         }
@@ -97,12 +96,12 @@ onMounted(() => {
                 color: $text-default;
             }
         }
-        h1 {
-            @include h1($line-height: 16px, $spacing: 0px);
+        .title {
+            @include title($line-height: 16px, $spacing: 0px);
             margin-bottom: 4px;
         }
         p {
-            @include h2($size: 12px, $spacing: 0px);
+            @include subtitle($size: 12px, $spacing: 0px);
             color: $text-default;
             margin-bottom: 8px;
         }

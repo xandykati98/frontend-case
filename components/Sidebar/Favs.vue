@@ -17,7 +17,7 @@ const pink = '#E255F2';
 .nav-group {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: stretch;
     align-items: center;
     flex-direction: column;
 }

@@ -19,7 +19,7 @@
                         <div>
                             AGUARDANDO
                         </div>
-                        <h1>{{ toTimeString(tracks[activeTrack].timeMs, true) }}<span>:{{ toTimeStringObject(tracks[activeTrack].timeMs).seconds }}</span></h1>
+                        <span class="title">{{ toTimeString(tracks[activeTrack].timeMs, true) }}<span>:{{ toTimeStringObject(tracks[activeTrack].timeMs).seconds }}</span></span>
                     </section>
                     <button @click="toggleRunning" v-if="!running">
                         <nuxt-icon name="play"/>Iniciar
@@ -45,8 +45,8 @@
                                     <nuxt-icon :name="track.icon" filled/>
                                 </div>
                                 <div>
-                                    <h1>{{ track.title }}</h1>
-                                    <h2>{{ toTimeString(track.timeMs) }}</h2>
+                                    <span class="title">{{ track.title }}</span>
+                                    <h2 class="subtitle">{{ toTimeString(track.timeMs) }}</h2>
                                 </div>
                             </section>
                             <div class="config">
@@ -57,7 +57,7 @@
                 </div>
                 <div v-else class="empty">
                     <nuxt-icon name="atividades-vazio" filled/>
-                    <h2>Sem registro de atividades</h2>
+                    <h2 class="subtitle">Sem registro de atividades</h2>
                 </div>
             </div>
         </template>
@@ -65,7 +65,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 const running = ref(false);
 const interval = ref<NodeJS.Timeout | null>(null);
 const activeTrack = ref(0);
@@ -188,8 +187,8 @@ function activateTrack(track: Track) {
                 text-transform: uppercase;
                 text-align: center;
             }
-            & h1 {
-                @include h1($size: 40px, $line-height: 48px, $spacing: -0.4px);
+            & .title {
+                @include title($size: 40px, $line-height: 48px, $spacing: -0.4px);
                 height: 48px;
                 & span {
                     color: $text-default;
@@ -303,11 +302,11 @@ function activateTrack(track: Track) {
             width: 72px;
             height: 72px;
         }
-        & h2 {
-            @include h2($line-height: 20px);
+        & .subtitle {
+            @include subtitle($line-height: 20px);
         }
     }
-    & .title {
+    & > .title {
         font-size: 11px;
         font-style: normal;
         font-weight: 500;
@@ -351,16 +350,13 @@ function activateTrack(track: Track) {
                 cursor: pointer;
                 display: flex;
                 gap: 10px;
-                h1, h2 {
+                .title, .subtitle {
                     margin: unset;
                 }
-                h1 {
-                    @include h1($weight: 400);
+                .title {
+                    @include title($weight: 400);
                     color: $text-highlight;
                     margin-bottom: 4px;
-                }
-                h2 {
-                    @include h2;
                 }
             }
             & .select-icon {

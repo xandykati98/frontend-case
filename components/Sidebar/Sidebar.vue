@@ -17,8 +17,6 @@
     </div>
 </template>
 <script setup lang="ts">
-import { useLayoutStore } from '../../stores/layout'
-
 const layout = useLayoutStore();
 
 defineProps({
@@ -26,7 +24,7 @@ defineProps({
     toggleMobileActive: Function
 })
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .sidebar-lists {
     & > section {
         width: 100%;
@@ -38,7 +36,7 @@ defineProps({
     }
 }
 .minimized {
-	& .nav-group {
+	& :deep(.nav-group) {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
@@ -57,19 +55,7 @@ defineProps({
         }
 	}
 }
-.list-title {
-    text-transform: uppercase;
-    padding: 4px;
-    width: 100%;
-    color: #868C98;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 16px;
-    letter-spacing: 0.48px;
-    text-transform: uppercase;
-}
-.nav-group {
+:deep(.nav-group) {
     list-style: none;
     padding: 0px;
     margin: 0px;
@@ -84,6 +70,7 @@ defineProps({
         & .contents {
             display: flex;
             align-items: center;
+            gap: 8px;
             & .icon {
                 display: flex;
                 justify-content: center;
@@ -98,11 +85,8 @@ defineProps({
             }
             & .title {
                 margin: 0px 8px;
+                @include title($size: 14px, $line-height: 20px, $spacing: -0.084px, $weight: 500);
                 color: $text-default;
-                font-weight: 500;
-                line-height: 20px;
-                font-size: 14px;
-                letter-spacing: -0.084px;
             }
         }
         & .caret {
@@ -132,24 +116,20 @@ defineProps({
             }
             &.active {
                 background: $highlight-bg;
-                & .item {
-                    & .title {
-                        color: $text-highlight;
-                    }
-                    & .contents .icon {
-                        color: $primary;
-                    }
-                    & .caret {
-                        transform: translateX(0px);
-                        opacity: 1;
-                    }
+                & .title {
+                    color: $text-highlight;
+                }
+                & .contents .icon {
+                    color: $primary;
+                }
+                & .caret {
+                    transform: translateX(0px);
+                    opacity: 1;
                 }
             }
         }
     }
 }
-</style>
-<style lang="scss" scoped>
 .sidebar {
     width: $sidebar-width;
     height: 100vh;
@@ -175,6 +155,18 @@ defineProps({
     gap: 20px;
     flex: 1 0 0;
     align-self: stretch;
+    & :deep(.list-title) {
+        text-transform: uppercase;
+        padding: 4px;
+        width: 100%;
+        color: #868C98;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0.48px;
+        text-transform: uppercase;
+    }
 }
 .minimized {
     .container-sidebar {

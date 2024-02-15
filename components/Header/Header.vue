@@ -6,10 +6,10 @@
                     <nuxt-img :src="store.user?.avatar" alt="avatar"/>
                 </div>
                 <div class="intro" v-if="!layout.isMinimized ? $viewport.isGreaterOrEquals('desktop') : $viewport.isGreaterOrEquals('tablet')">
-                    <h1>
+                    <span class="title">
                         {{ store.user?.name }}
-                    </h1>
-                    <h2 v-html="unifiedToHTML(
+                    </span>
+                    <h2 class="subtitle" v-html="unifiedToHTML(
                         store.user?.pronouns === 'neutro' ? 'Bem-vinde de volta 👋🏻' : 
                         store.user?.pronouns === 'ela/dela' ? 'Bem-vinda de volta 👋🏻' :
                         // default to ele/dele
@@ -32,10 +32,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useNuxtApp } from 'nuxt/app'
-import { useUserStore } from '../../stores/user'
-import { useLayoutStore } from '../../stores/layout'
-import { useEmoji } from '../../composables/emoji';
 const { unifiedToHTML } = useEmoji()
 
 const layout = useLayoutStore();
@@ -43,18 +39,6 @@ const store = useUserStore()
 const { $viewport } = useNuxtApp()
 
 </script>
-<style lang="scss">
-header {
-    & .container-avatar-intro {
-        & .intro {
-            & .emoji {
-                animation: $emoji-fade-in;
-                opacity: 0;
-            }
-        }
-    }
-}
-</style>
 <style lang="scss" scoped>
 header {
     background: $bg;
@@ -63,6 +47,13 @@ header {
     height: 88px;
     display: flex;
     justify-content: space-between;
+    & .container-avatar-intro {
+        & .intro {
+            & :deep(.emoji) {
+                @include emoji;
+            }
+        }
+    }
     @media (max-width: $mobileWide) {
         padding-right: 16px;
         padding-left: 16px;
@@ -113,14 +104,14 @@ header {
         }
     }
     & .intro {
-        & h1 {
-            @include h1($size: 18px, $line-height: 24px, $spacing: -0.27px);
+        & .title {
+            @include title($size: 18px, $line-height: 24px, $spacing: -0.27px);
             color: $text-highlight;
             margin-bottom: 4px;
         }
-        & h2 {
+        & .subtitle {
             display: flex;
-            @include h2($size: 14px, $line-height: 20px);
+            @include subtitle($size: 14px, $line-height: 20px);
             display: block;
         }
     }

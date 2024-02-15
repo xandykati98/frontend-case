@@ -9,10 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-
-import { useLayoutStore } from '../../stores/layout'
 
 const layout = useLayoutStore();
 

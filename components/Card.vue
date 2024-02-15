@@ -3,7 +3,7 @@
         <div class="title">
             <section>
                 <nuxt-icon :name="icon || ''" />
-                <h1>{{ title }}</h1>
+                <span class="title">{{ title }}</span>
             </section>
             <slot name="title-inner"/>
         </div>
@@ -48,10 +48,10 @@ defineProps({
             display: flex;
             align-items: center;
             gap: 8px;
-            & h1 {
+            & .title {
                 text-align: left;
                 padding-right: 10px;
-                @include h1($size: 16px, $line-height: 24px, $spacing: 0px);
+                @include title($size: 16px, $line-height: 24px, $spacing: 0px);
             }
             & .nuxt-icon {
                 width: 24px;

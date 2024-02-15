@@ -6,13 +6,13 @@
         <template #card-inner>
             <div class="divider"></div>
             <div class="to-text">
-                <h2><b>{{ totalHours }}</b> horas <b>{{ totalMinutes }}</b> minutos no total <span class="time-emoji" v-html="unifiedToHTML('⏳')"></span></h2>
+                <h2 class="subtitle"><b>{{ totalHours }}</b> horas <b>{{ totalMinutes }}</b> minutos no total <span class="time-emoji" v-html="unifiedToHTML('⏳')"></span></h2>
             </div>
             <div :class="{ 'bars-container': true, detailed: details }">
 
                 <div class="bar" v-for="(value, key) in report.tags" :key="key" :style="{ width: (value / report.total * 100) + '%', background: colors[key] }">
                     <div class="bar-text">
-                        <h2>{{ Math.floor(value / 1000 / 60 / 60) }}h {{ Math.floor(value / 1000 / 60) % 60 }}m</h2>
+                        <h2 class="subtitle">{{ Math.floor(value / 1000 / 60 / 60) }}h {{ Math.floor(value / 1000 / 60) % 60 }}m</h2>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="tag" v-for="(value, key) in report.tags" :key="key">
                     <div class="tag-color" :style="{ background: colors[key] }"></div>
                     <div class="tag-text">
-                        <h2>{{ key }}</h2>
+                        <h2 class="subtitle">{{ key }}</h2>
                     </div>
                 </div>
             </div>
@@ -28,8 +28,6 @@
     </Card>
 </template>
 <script setup lang="ts">
-import { computed, ref } from "vue"
-import { useEmoji } from "../composables/emoji";
 import { type APIResponse, type TimeReport } from "../server/crosstypes";
 const { unifiedToHTML } = useEmoji()
 
@@ -68,7 +66,7 @@ $fetch('/api/time_report')
         console.error(err)
     })
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .to-text {
     & .time-emoji {
         & .emoji {
@@ -77,8 +75,6 @@ $fetch('/api/time_report')
         }
     }
 }
-</style>
-<style lang="scss" scoped>
 .divider {
     width: 100%;
     position: relative;
@@ -95,7 +91,7 @@ $fetch('/api/time_report')
 }
 .loading {
     & .to-text {
-        & h2 {
+        & .subtitle {
             & b {
                 color: $text-highlight-off;
             }
@@ -140,8 +136,8 @@ $fetch('/api/time_report')
             box-sizing: content-box;
         }
         & .tag-text {
-            & h2 {
-                @include h2($size: 12px, $spacing: 0px);
+            & .subtitle {
+                @include subtitle($size: 12px, $spacing: 0px);
                 color: $text-default;
             }
         }
@@ -157,7 +153,7 @@ $fetch('/api/time_report')
         & .bar {
             height: 30px;
             & .bar-text {
-                & h2 {
+                & .subtitle {
                     opacity: 1;
                 }
             }
@@ -181,7 +177,7 @@ $fetch('/api/time_report')
             justify-content: center;
             align-items: center;
             display: flex;
-            & h2 {
+            & .subtitle {
                 font-size: 14px;
                 font-weight: 500;
                 color: #FFFFFF;
@@ -205,10 +201,10 @@ $fetch('/api/time_report')
             opacity: 0;
         }
     }
-    & h2 {
+    & .subtitle {
         display: flex;
         align-items: center;
-        @include h2($size: 16px, $line-height: inherit, $spacing: 0px);
+        @include subtitle($size: 16px, $line-height: inherit, $spacing: 0px);
         gap: 4px;
         & b {
             font-weight: 500;

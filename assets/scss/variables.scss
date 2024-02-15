@@ -48,7 +48,7 @@ $tablet: 768px;
         opacity: 1;
     }
 }
-@mixin h1($size: 14px, $weight: 500, $line-height: 20px, $spacing: -0.084px) {
+@mixin title($size: 14px, $weight: 500, $line-height: 20px, $spacing: -0.084px) {
     font-feature-settings: 'ss11' on, 'cv09' on, 'liga' off, 'calt' off;
     color: $text-highlight;
     font-weight: $weight;
@@ -57,8 +57,14 @@ $tablet: 768px;
     line-height: $line-height;
     letter-spacing: $spacing;
 }
-
-@mixin h2($size: 12px, $weight: 400, $line-height: 16px, $spacing: -0.084px) {
+@mixin emoji {
+    animation: $emoji-fade-in;
+    opacity: 0;
+}
+:global(.title) {
+    @include title;
+}
+@mixin subtitle($size: 12px, $weight: 400, $line-height: 16px, $spacing: -0.084px) {
     font-feature-settings: 'ss11' on, 'cv09' on, 'liga' off, 'calt' off;
     color: $text-highlight;
     font-weight: $weight;
@@ -67,7 +73,9 @@ $tablet: 768px;
     line-height: $line-height;
     letter-spacing: $spacing;
 }
-
+:global(.subtitle) {
+    @include subtitle;
+}
 @mixin flexCenter {
     display: flex;
     justify-content: center;

@@ -6,8 +6,8 @@
                     <nuxt-icon name="logo" filled/>
                 </div>
                 <div class="intro">
-                    <h1>Jurisoft</h1>
-                    <h2>Marketing Jurídico</h2>
+                    <span class="title">Jurisoft</span>
+                    <h2 class="subtitle">Marketing Jurídico</h2>
                 </div>
             </div>
             <div v-if="!mobileActive" class="caret" @click="caretClick">
@@ -18,8 +18,6 @@
     </div>
 </template>
 <script setup lang="ts">
-import { useLayoutStore } from '../../stores/layout'
-
 const layout = useLayoutStore();
 const logoClick = () => {
     layout.maximize();
@@ -91,12 +89,11 @@ defineProps({
             flex-direction: column;
             transition: $sidebar-transition;
         }
-        & .intro h1 {
-            @include h1;
+        & .intro .title {
             margin-bottom: 4px;
         }
-        & .intro h2 {
-            @include h2($spacing: 0px);
+        & .intro .subtitle {
+            @include subtitle($spacing: 0px);
         }
         & .caret {
             width: 24px;
