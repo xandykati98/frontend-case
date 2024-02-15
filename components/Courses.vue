@@ -82,10 +82,19 @@ const isEmpty = computed(() => {
     return courses.value.filter(course => !inputValue ? true : course.professor.name.toLocaleLowerCase().includes(inputValue.value.toLocaleLowerCase())).length === 0
 })
 
+/**
+ * @description Altera o valor do input
+ * @param e 
+ */
 function changeInputValue(e: Event) {
     const target = e.target as HTMLInputElement;
     inputValue.value = target.value;
 }
+/**
+ * @description Retorna a data do curso formatada
+ * @param start 
+ * @param end 
+ */
 function getCourseDate(start: string, end: string) {
     const startDate = new Date(start);
     const endDate = new Date(end);

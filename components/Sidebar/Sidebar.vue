@@ -37,8 +37,7 @@ defineProps({
 }
 .minimized {
 	& :deep(.nav-group) {
-		display: flex;
-		flex-wrap: wrap;
+        @include flexWrap;
 		justify-content: center;
         & .item {
             width: fit-content;
@@ -100,8 +99,7 @@ defineProps({
         & .link {
             padding: 8px 12px 8px 12px;
             text-decoration: none!important;
-            display: flex;
-            flex-wrap: wrap;
+            @include flexWrap;
             border-radius: 8px;
             position: relative;
             height: 36px;
@@ -187,8 +185,7 @@ defineProps({
     box-shadow: 1px 0px 0px 0px $border;
     background: $bg;
     height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
+    @include flexWrap;
 	transition: 0s;
 	width: 100%;
     justify-content: flex-start;
@@ -219,8 +216,7 @@ defineProps({
     }
 }
 .bottom {
-    display: flex;
-    flex-wrap: wrap;
+    @include flexWrap;
     align-items: flex-end;
     align-content: flex-end;
     

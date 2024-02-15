@@ -15,8 +15,7 @@ const pink = '#E255F2';
 </script>
 <style lang="scss" scoped>
 .nav-group {
-    display: flex;
-    flex-wrap: wrap;
+    @include flexWrap;
     justify-content: stretch;
     align-items: center;
     flex-direction: column;

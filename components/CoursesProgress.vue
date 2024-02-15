@@ -27,9 +27,15 @@ import gsap from 'gsap';
 
 const progress = ref(0);
 
+/**
+ * @description Alterna o progresso entre 0 e 25
+ */
 function toggleProgress() {
     gsap.to(progress, { duration: 0.5, value: progress.value === 25 ? 0 : 25 })
 }
+/**
+ * @description Preenche o progresso para 100
+ */
 function fullfillProgress() {
     gsap.to(progress, { duration: 0.5, value: 100 })
 }

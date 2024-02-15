@@ -64,6 +64,10 @@ $tablet: 768px;
 :global(.title) {
     @include title;
 }
+@mixin flexWrap {
+    display: flex;
+    flex-wrap: wrap;
+}
 @mixin subtitle($size: 12px, $weight: 400, $line-height: 16px, $spacing: -0.084px) {
     font-feature-settings: 'ss11' on, 'cv09' on, 'liga' off, 'calt' off;
     color: $text-highlight;

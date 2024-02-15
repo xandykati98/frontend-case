@@ -19,6 +19,9 @@
 const { $viewport } = useNuxtApp();
 const mobileActive = ref(false);
 
+/**
+ * @description Alterna a visibilidade do menu lateral no mobile
+ */
 function toggleMobileActive() {
     mobileActive.value = !mobileActive.value;
 }

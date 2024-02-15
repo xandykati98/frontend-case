@@ -1,6 +1,9 @@
 import emojiMap from '../assets/emoji.json';
 
 let emojiReg: null | RegExp = null;
+/**
+ * @description Cria uma expressão regular para encontrar emojis
+ */
 const createRegexp = () => {
     const keys = Object.keys(emojiMap);
     keys.sort(function (a, b) {
@@ -12,12 +15,18 @@ const createRegexp = () => {
     return new RegExp(`(${keys.join('|')})`, 'g');
 };
 
+/**
+ * @description Retorna a expressão regular para encontrar emojis
+ */
 const getEmojiReg = () => {
     if (!emojiReg) {
         emojiReg = createRegexp();
     }
     return emojiReg;
 };
+/**
+ * @description Converte emojis para HTML
+ */
 const unifiedToHTML = (text = '') => {
     return text.replace(getEmojiReg(), function (_, raw) {
         const [className, ariaLabel] = emojiMap[raw as keyof typeof emojiMap];

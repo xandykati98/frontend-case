@@ -70,8 +70,7 @@ $fetch('/api/time_report')
 .to-text {
     & .time-emoji {
         & .emoji {
-            animation: $emoji-fade-in;
-            opacity: 0;
+            @include emoji;
         }
     }
 }
@@ -115,8 +114,7 @@ $fetch('/api/time_report')
 }
 .tags-container {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    @include flexWrap;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -197,8 +195,7 @@ $fetch('/api/time_report')
     height: 24px;
     & .time-emoji {
         & > span {
-            animation: $emoji-fade-in;
-            opacity: 0;
+            @include emoji;
         }
     }
     & .subtitle {

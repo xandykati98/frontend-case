@@ -48,6 +48,9 @@ const textareaValue = ref('')
 const mood = ref<string | null>(null);
 const loading = ref(false)
 
+/**
+ * @description Envia o feedback para o servidor
+ */
 function sendFeedback() {
     if (!mood.value) return alert('Selecione um humor')
     if (!textareaValue.value) return alert('Escreva uma mensagem')
@@ -83,8 +86,7 @@ function sendFeedback() {
     }
 }
 .emoji {
-    animation: $emoji-fade-in;
-    opacity: 0;
+    @include emoji;
 }
 .divider {
     width: 100%;

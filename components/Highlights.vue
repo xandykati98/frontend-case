@@ -119,6 +119,9 @@ const defaultUser = {
     verified: true,
     job: 'Engenheiro de Software',
 }
+/**
+ * @description Função para resetar o usuario exibido na aba "Geral"
+ */
 function toggleGeralUser() {
     activeTab.value = null
 }
@@ -141,7 +144,7 @@ const tabsInfo = ref<TabsInfo>({
 })
 // https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge
 /**
- * Simple object check.
+ * @description Função para verificar se o item é um objeto
  * @param item
  * @returns {boolean}
  */
@@ -150,7 +153,7 @@ function isObject(item: any): boolean {
 }
 
 /**
- * Deep merge two objects.
+ * @description Função para mesclar objetos profundamente
  * @param target
  * @param ...sources
  */
@@ -172,11 +175,16 @@ function mergeDeep(target: any, ...sources: any[]): any {
     return mergeDeep(target, ...sources);
 }
 
+/**
+ * @description Função para setar a referencia do tab
+ * @param el 
+ * @param tabName 
+ */
 function setTabRef(el: Ref, tabName: keyof Refs) {
     tabsRefs.value[tabName] = el;
 }
 
-// compute the 'width' of the tab-tracker, based on the width of the active tab
+// calcula a largura do tab-tracker, baseado na largura do tab ativo
 const tabTrackerWidth = computed(() => {
     if (activeTab.value === null) return '0%';
     const tab = tabsRefs.value[activeTab.value];
@@ -186,7 +194,7 @@ const tabTrackerWidth = computed(() => {
     return foundWidth > 0 ? foundWidth + 'px' : defaultWidth;
 })
 
-// compute the 'left' of the tab-tracker, based on the position of the active tab
+// calcula a posição do tab-tracker, baseado na posição do tab ativo
 const tabTrackerLeft = computed(() => {
     if (activeTab.value === null) return '0px';
     const tab = tabsRefs.value[activeTab.value];

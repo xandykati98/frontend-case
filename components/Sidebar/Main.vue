@@ -64,14 +64,22 @@ const navLinks = ref<NavLink[]>([
 const activeLink = ref(0)
 const links = ref<NavLink[]>([])
 const lastActiveLink = ref(0)
+/**
+ * @description Define o link ativo
+ * @param index index do link
+ */
 const setActiveLink = (index: number) => {
     activeLink.value = index
 }
-
+/**
+ * @description Registra um link na lista de links
+ * @param link 
+ */
 const registerLink = (link: NavLink) => {
     links.value.push(link)
 }
 
+// posição do tracker
 const trackerTop = computed(() => {
     if (activeLink.value === -1) {
         return `${(lastActiveLink.value * (36 + 4)) + 8}px`
@@ -81,6 +89,7 @@ const trackerTop = computed(() => {
 
 const route = useRoute()
 
+// observa a mudança de rota
 watch(() => route.path, (to) => {
     lastActiveLink.value = activeLink.value
     // if "to" not in links
@@ -90,12 +99,12 @@ watch(() => route.path, (to) => {
 })
 
 onMounted(() => {
-    // register all links
+    // registra os links
     for (const link of navLinks.value) {
         registerLink(link)
     }
     const path = window.location.pathname
-    // find active link
+    // define o link ativo
     const index = links.value.findIndex(link => link.to === path)
     setActiveLink(index)
 })

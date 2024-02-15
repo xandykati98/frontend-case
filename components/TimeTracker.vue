@@ -69,6 +69,9 @@ const running = ref(false);
 const interval = ref<NodeJS.Timeout | null>(null);
 const activeTrack = ref(0);
 
+/**
+ * @description Inicia ou pausa o rastreador de tempo
+ */
 function toggleRunning() {
     running.value = !running.value;
     if (interval.value && running.value) {
@@ -82,6 +85,9 @@ function toggleRunning() {
     }, 1000);
     interval.value = cancel;
 }
+/**
+ * @description Alterna entre as tarefas
+ */
 function toggleTracks() {
     if (tracks.value.length === 1) {
         tracks.value = defaultTracks;
@@ -89,6 +95,9 @@ function toggleTracks() {
         tracks.value = [defaultTracks[0]];
     }
 }
+/**
+ * @description Reseta o rastreador de tempo
+ */
 function resetRunning() {
     tracks.value[activeTrack.value].timeMs = 0;
     if (running.value) {
@@ -124,6 +133,10 @@ const defaultTracks = [
 
 const tracks = ref<Track[]>(defaultTracks)
 
+/**
+ * @description Converte milissegundos para um objeto de tempo
+ * @param timeMs Tempo em milissegundos
+ */
 function toTimeStringObject(timeMs: number) {
     const hours = Math.floor(timeMs / 3600000);
     const minutes = Math.floor((timeMs - hours * 3600000) / 60000);
@@ -134,6 +147,11 @@ function toTimeStringObject(timeMs: number) {
         seconds: seconds.toString().padStart(2, '0'),
     };
 }
+/**
+ * @description Converte milissegundos para uma string de tempo
+ * @param timeMs Tempo em milissegundos
+ * @param justHoursAndMinutes Se verdadeiro, retorna apenas horas e minutos
+ */
 function toTimeString(timeMs: number, justHoursAndMinutes = false) {
     const { hours, minutes, seconds } = toTimeStringObject(timeMs);
     if (justHoursAndMinutes) {
@@ -141,6 +159,10 @@ function toTimeString(timeMs: number, justHoursAndMinutes = false) {
     }
     return `${hours}:${minutes}:${seconds}`;
 }
+/**
+ * @description Ativa uma tarefa
+ * @param track Tarefa a ser ativada
+ */
 function activateTrack(track: Track) {
     if (running.value) {
         toggleRunning();

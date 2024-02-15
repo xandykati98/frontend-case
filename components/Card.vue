@@ -17,15 +17,6 @@ defineProps({
     containerClass: String,
 })
 </script>
-<style lang="scss" >
-.card {
-    & .title {
-        & button {
-            padding: 6px 8px!important;
-        }
-    }
-}
-</style>
 <style lang="scss" scoped>
 .card {
     display: flex;
@@ -48,6 +39,9 @@ defineProps({
             display: flex;
             align-items: center;
             gap: 8px;
+            & button {
+                padding: 6px 8px!important;
+            }
             & .title {
                 text-align: left;
                 padding-right: 10px;

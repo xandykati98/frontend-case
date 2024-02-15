@@ -61,9 +61,8 @@ defineProps({
     height: 88px;
     padding: 12px;
     padding-bottom: 0px;
-    display: flex;
+    @include flexWrap;
     justify-content: center;
-    flex-wrap: wrap;
     transition: $sidebar-transition;
     align-content: space-between;
     & section {
@@ -82,8 +81,7 @@ defineProps({
             }
         }
         & .intro {
-            display: flex;
-            flex-wrap: wrap;
+            @include flexWrap;
             align-items: flex-start;
             height: 100%;
             flex-direction: column;
